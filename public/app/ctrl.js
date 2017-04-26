@@ -1,6 +1,24 @@
-app.controller('HomeCtrl', function($scope, $timeout) {
+app.controller('HomeCtrl', function($scope, $timeout, $http) {
+
+  $scope.getProd = function() {
+    $http.post('http://hshelpline.co.uk/custom/api/get-products.php').then(function(resp) {
+      console.log(resp);
+        var fields = resp.data.fields;
+        for(key in fields) {
+          console.log(fields[key]);
+          /*if(fields[key].name == 'productcategory') {
+            var prodCat = fields[key].name.type.picklistValues;
+          }*/
+        }
+        //console.log(prodCat);
+    })
+  }
+
+
 
   $timeout(function () {
+
+    //$scope.getProd();
 
     // -------------------------------------------------------------
     //  select options

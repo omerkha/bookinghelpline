@@ -1,4 +1,6 @@
 // Require Express
+var cors = require('cors');
+
 var express         = require('express');
 var app             = express();
 var bodyParser      = require('body-parser');
@@ -11,11 +13,22 @@ var bodyParser      = require('body-parser');
 // Connect DB
 //mongoose.connect(configDB.url);
 
+//enable cors
+app.use(cors({
+'allowedHeaders': ['sessionId', 'Content-Type'],
+'exposedHeaders': ['sessionId'],
+'origin': '*',
+'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+'preflightContinue': false
+}));
+
 // Set Port
 app.set('port', (process.env.PORT || 5002));
 
 // Set Web Visible Path
 app.use(express.static(__dirname + '/public'));
+
+
 
 // Need for Posting Data
 app.use(bodyParser.json());
