@@ -1,24 +1,32 @@
-app.controller('HomeCtrl', function($scope, $timeout, $http) {
-
-  $scope.getProd = function() {
-    $http.post('http://hshelpline.co.uk/custom/api/get-products.php').then(function(resp) {
-      console.log(resp);
-        var fields = resp.data.fields;
-        for(key in fields) {
-          console.log(fields[key]);
-          /*if(fields[key].name == 'productcategory') {
-            var prodCat = fields[key].name.type.picklistValues;
-          }*/
-        }
-        //console.log(prodCat);
+app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $localStorage, func) {
+  if($localStorage.bh !== undefined && $localStorage.bh.courses) {
+    courses = $localStorage.bh.courses;
+    $scope.courses = courses;
+  } else {
+    $localStorage.bh = {};
+    func.getCourses(function(respCourses) {
+      courses = respCourses;
+      $localStorage.bh.courses = courses;
+      $scope.courses = courses;
     })
   }
+
+
+})
+
+app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses) {
+
+  $scope.cats = cats;
 
 
 
   $timeout(function () {
 
-    //$scope.getProd();
+    /*if(loadCount == 1) {
+      $scope.getProd();
+    }
+
+    loadCount++;*/
 
     // -------------------------------------------------------------
     //  select options
@@ -74,49 +82,6 @@ app.controller('HomeCtrl', function($scope, $timeout, $http) {
 
     })(jQuery);
 
-
-
-    // -------------------------------------------------------------
-    //  Owl Carousel
-    // -------------------------------------------------------------
-
-
-    (function() {
-
-        $("#top-featured").owlCarousel({
-            items:4,
-            nav:true,
-            autoplay:true,
-            dots:true,
-      autoplayHoverPause:true,
-            loop:true,
-      nav:false,
-      navText: [
-        "<i class='fa fa-angle-left '></i>",
-        "<i class='fa fa-angle-right'></i>"
-      ],
-            responsive: {
-                0: {
-                    items: 1,
-                    slideBy:1
-                },
-                480: {
-                    items: 2,
-                    slideBy:1
-                },
-                991: {
-                    items: 3,
-                    slideBy:1
-                },
-                1000: {
-                    items: 4,
-                    slideBy:1
-                },
-            }
-
-        });
-
-    }());
 
     // -------------------------------------------------------------
     //  language Select
@@ -197,6 +162,154 @@ app.controller('HomeCtrl', function($scope, $timeout, $http) {
 
   }, 100);
 
+
+  $timeout(function () {
+
+
+  // -------------------------------------------------------------
+  //  Owl Carousel
+  // -------------------------------------------------------------
+
+
+  (function() {
+
+      $("#top-featured").owlCarousel({
+          items:4,
+          nav:true,
+          autoplay:true,
+          dots:true,
+          autoplayHoverPause:true,
+          loop:true,
+          nav:false,
+          navText: [
+      "<i class='fa fa-angle-left '></i>",
+      "<i class='fa fa-angle-right'></i>"
+      ],
+          responsive: {
+              0: {
+                  items: 1,
+                  slideBy:1
+              },
+              480: {
+                  items: 2,
+                  slideBy:1
+              },
+              991: {
+                  items: 3,
+                  slideBy:1
+              },
+              1000: {
+                  items: 4,
+                  slideBy:1
+              },
+          }
+
+      });
+
+  }());
+
+}, 2000);
+
+}) // ctrl end
+
+
+app.controller('CatCtrl', function($scope, $timeout, $http, cats, $location, $routeParams, Slug, courses, $localStorage) {
+    $scope.catCourse = [];
+    $scope.catName = $routeParams.catName;
+    if($localStorage.bh !== undefined && $localStorage.bh.courses !== undefined) {
+      courses = $localStorage.bh.courses;
+      $scope.courses = courses;
+    } else {
+      func.getCourses(function(respCourses) {
+        courses = respCourses;
+        $localStorage.bh.courses = courses;
+        $scope.courses = courses;
+      })
+    }
+
+    $scope.cats = cats;
+
+
+    var loadCourse = function(everythingElse){
+      var interval = setInterval(function(){
+        if(typeof $scope.courses !== 'undefined'){
+          clearInterval(interval);
+          everythingElse();
+        }
+      },1);
+    };
+
+    loadCourse(function(){
+      for(key in $scope.courses) {
+          if(Slug.slugify($scope.courses[key].productcategory) == $scope.catName) {
+            $scope.catCourse.push($scope.courses[key]);
+          }
+      }
+    });
+
+    /*for(key in cats) {
+        if( Slug.slugify(cats[key].url) == $scope.catName ) {
+              $scope.currCat = cats[key];
+        }
+    }
+    for($scope.courses)*/
+})
+
+app.controller('CourseCtrl', function($scope, $timeout, $http, cats, $location, $routeParams, courses, Slug, $localStorage, func) {
+
+  $scope.courseSlug = $routeParams.courseName;
+
+  if($localStorage.bh !== undefined && $localStorage.bh.courses !== undefined) {
+    courses = $localStorage.bh.courses;
+    $scope.courses = courses;
+  } else {
+    func.getCourses(function(respCourses) {
+      courses = respCourses;
+      $localStorage.bh.courses = courses;
+      $scope.courses = courses;
+    })
+  }
+
+  var loadCourse = function(everythingElse){
+    var interval = setInterval(function(){
+      if(typeof $scope.courses !== 'undefined'){
+        clearInterval(interval);
+        everythingElse();
+      }
+    },1);
+  };
+
+  loadCourse(function(){
+    for(key in $scope.courses) {
+        if(Slug.slugify($scope.courses[key].productname) == $scope.courseSlug) {
+            $scope.currCourse = $scope.courses[key];
+        }
+    }
+    console.log($scope.currCourse);
+  });
+
+  //console.log($scope.courses);
+  //$scope.courses = courses;
+  /*for(key in $scope.courses) {
+    console.log(Slug.slugify(course[key].productname));
+      if(Slug.slugify(course[key].productname) == $scope.courseSlug) {
+          $scope.currCourse = course[key];
+          alert($scope.currCourse);
+      }
+  }*/
+
+
+
+    /*$scope.courses = courses;
+    $scope.courseSlug = $routeParams.courseName;
+    alert(JSON.stringify(courses));
+    for(key in courses) {
+
+        if(Slug.slugify(course[key].productname) == $scope.courseSlug) {
+            $scope.currCourse = course[key];
+            alert($scope.currCourse);
+        }
+    }*/
 
 
 })

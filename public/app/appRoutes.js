@@ -9,7 +9,22 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
         controller  : 'HomeCtrl'
     })
 
-  
+    .when('/contact', {
+        templateUrl : viewDir+'home/contact-view.html',
+        controller  : 'HomeCtrl'
+    })
+
+    .when('/:catName', {
+        templateUrl : viewDir+'cat/cat-view.html',
+        controller  : 'CatCtrl'
+    })
+
+    .when('/:catName/:courseName', {
+        templateUrl : viewDir+'course/course-view.html',
+        controller  : 'CourseCtrl'
+    })
+
+
 
     .otherwise({
         redirectTo: '/'

@@ -1,0 +1,458 @@
+<div head></div>
+<div navi></div>
+
+<div class="page">
+  <div id="breadcrumb-section" class="section">
+    <div class="container">
+      <div class="page-title text-center">
+        <h1>{{catName}}</h1>
+        <ol class="breadcrumb">
+          <li><a href="/">Home</a></li>
+          <li class="active">{{catName}}</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- breadcrumb-section -->
+  <div id="search-section">
+    <div class="container">
+      <form action="#">
+        <div class="search-section">
+          <ul>
+            <li>
+              <div class="dropdown category-dropdown">
+                <a data-toggle="dropdown" href="#"><span class="change-text">All Categories</span> <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown-menu category-change">
+                  <li ng-repeat="cat in cats"><a href="#">{{cat.name}}</a></li>
+
+                </ul>
+              </div><!-- category-change -->
+            </li>
+            <li>
+              <div class="dropdown category-dropdown">
+                <a data-toggle="dropdown" href="#"><span class="change-text">All Locations</span> <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown-menu category-change">
+                  <li><a href="#">UK</a></li>
+                </ul>
+              </div><!-- category-change -->
+            </li>
+            <li>
+              <input type="text" class="form-control" placeholder="What are you looking for ?">
+            </li>
+            <li>
+              <button type="submit" class="form-control btn btn-primary" value="Search">Search</button>
+            </li>
+          </ul>
+        </div>
+      </form>
+    </div>
+  </div><!-- search-section -->
+
+  <div class="all-categories sub-category section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-4">
+          <div class="sidebar">
+            <div class="filter-list">
+              <h4 class="list-title"><a href="categories.html"><i class="fa fa-angle-double-left" aria-hidden="true"></i> All Categories</a></h4>
+              <ul class="list-group">
+                <li ng-repeat="cat in cats" class="active"><a href="{{cat.url}}">{{cat.name}} <!-- <span>(2056)</span> --></a>
+              </ul>
+            </div><!-- filter-list -->
+
+            <div class="filter-list">
+              <h4 class="list-title">Location</h4>
+              <ul class="list-group">
+                <li><a href="#">South London <span>(56)</span></a> </li>
+                <li><a href="#">Surrey <span>(17)</span></a></li>
+                <li><a href="#">Bromley <span>(109)</span></a></li>
+              </ul>
+            </div><!-- filter-list -->
+
+            <!--<div class="filter-list brand-list">
+              <h4 class="list-title">Brands</h4>
+              <ul class="list-group checkbox">
+                <li><label for="samsung"><input type="checkbox" name="samsung" id="samsung"> Samsung</label></li>
+                <li><label for="apple"><input type="checkbox" name="apple" id="apple"> Apple</label></li>
+                <li><label for="lg"><input type="checkbox" name="lg" id="lg"> LG</label></li>
+                <li><label for="xiaomi"><input type="checkbox" name="xiaomi" id="xiaomi"> Xiaomi</label></li>
+                <li><label for="nokia"><input type="checkbox" name="nokia" id="nokia"> Nokia</label></li>
+                <li><label for="huawei"><input type="checkbox" name="huawei" id="huawei"> Huawei</label></li>
+                <li><label for="alcatel"><input type="checkbox" name="alcatel" id="alcatel"> Alcatel</label></li>
+              </ul>
+            </div><!-- filter-list -->
+
+
+            <div class="filter-list">
+              <div id="advanced-filter">
+                <div class="filter-heading">
+                  <a data-toggle="collapse" data-parent="#advanced-filter" href="#advanced">
+                    <h4 class="list-title">Advanced Filter<span class="pull-right"><i class="fa fa-plus"></i></span></h4>
+                  </a>
+                </div><!-- filter-heading -->
+
+                <div id="advanced" class="panel-collapse collapse">
+                  <!-- panel-body -->
+                  <div class="panel-body">
+                    <h5>Conditions</h5>
+                    <ul class="list-group checkbox">
+                      <li><label for="new"><input type="checkbox" name="new" id="new">Block</label></li>
+                      <li><label for="likeNew"><input type="checkbox" name="likeNew" id="likeNew"> Ending Soon</label></li>
+                      <li><label for="used"><input type="checkbox" name="used" id="used"> Nwely Listed</label></li>
+                    </ul>
+                    <h5>Price Range</h5>
+                    <div class="price-range">
+                      <label for="min"><input type="text" id="min" title="minimum price" placeholder="min" value=""></label>
+                      <label for="max"><input type="text" id="max" title="maximum price" placeholder="max" value=""></label>
+                      <button type="submit" class="btn btn-primary">Update Search</button>
+                    </div>
+                  </div><!-- panel-body -->
+                </div>
+               </div><!-- advanced-filter -->
+            </div><!-- filter-list -->
+          </div><!-- sidebar -->
+        </div><!-- col-sm-4 -->
+
+        <div class="col-md-9 col-sm-8">
+          <div class="category-adds">
+            <div id="category-tab">
+              <div class="tab-view">
+                <ul class="list-inline">
+                  <li class="grid-view-tab"><i class="fa fa-th-large" aria-hidden="true"></i></li>
+                  <li class="small-view-tab active"><i class="fa fa-th" aria-hidden="true"></i></li>
+                  <li class="list-view-tab"><i class="fa fa-th-list" aria-hidden="true"></i></li>
+                </ul>
+              </div>
+              <div class="category-tab">
+                <ul class="nav nav-tabs" role="tablist">
+                   <li role="presentation" class="active"><a href="#recent" aria-controls="recent" role="tab" data-toggle="tab">Recent</a></li>
+                   <li role="presentation"><a href="#popular" aria-controls="popular" role="tab" data-toggle="tab">Popular</a></li>
+                   <li role="presentation"><a href="#Random" aria-controls="Random" role="tab" data-toggle="tab">Random</a></li>
+                </ul>
+                <!-- Tab panes -->
+
+                  <div class="tab-content small-view-tab">
+                    <div role="tabpanel" class="tab-pane active" id="recent">
+                      <ul>
+
+                        <li class="item-wrap" ng-repeat="cat in catCourse">
+                          <div class="item">
+                            <div class="item-image">
+                            <a href="/{{catName}}/{{cat.productname | slugify}}"><img src="{{cat.cf_825}}" alt="" class="img-responsive"></a>
+                            <div class="item-price">
+                              <span>£{{cat.unit_price | limitTo: 5}}</span>
+                            </div>
+                          </div>
+                          <div class="item-description">
+                            <div class="item-meta">
+                              <div class="item-post-date">
+                                <span>{{cat.start_date | date:'mediumDate'}}</span>
+                              </div>
+                              <ul class="list-inline product-social">
+                                <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+                              </ul>
+                            </div>
+                            <div class="item-title">
+                              <h3><a href="/{{catName}}/{{cat.productname | slugify}}">{{cat.productname}}</a></h3>
+                            </div>
+                            <div class="item-info">
+                              <p>{{cat.description | limitTo: 100}}...</p>
+                            </div>
+                          </div><!-- item-description -->
+                          </div><!-- item -->
+                        </li> <!-- item-wrap -->
+
+                      </ul>
+                    </div> <!--tab-pane-->
+
+                    <div role="tabpanel" class="tab-pane" id="popular">
+                      <ul>
+                        <li class="item-wrap">
+                          <div class="item">
+                          <div class="item-image">
+                            <a href="details.html"><img src="images/item/7.jpg" alt="" class="img-responsive"></a>
+                            <div class="item-price">
+                              <span>$45</span>
+                            </div>
+                          </div>
+                          <div class="item-description">
+                            <div class="item-meta">
+                              <div class="item-post-date">
+                                <span>Today, 12:29 pm</span>
+                              </div>
+                              <ul class="list-inline product-social">
+                                <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+                              </ul>
+                            </div>
+                            <div class="item-title">
+                              <h3><a href="#">Product Title Goes Here</a></h3>
+                            </div>
+                            <div class="item-info">
+                              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
+                            </div>
+                          </div><!-- item-description -->
+                        </div><!-- item -->
+                        </li><!-- item-wrap -->
+
+                        <li class="item-wrap">
+                          <div class="item">
+                          <div class="item-image">
+                            <a href="details.html"><img src="images/item/8.jpg" alt="" class="img-responsive"></a>
+                            <div class="item-price">
+                              <span>$45</span>
+                            </div>
+                          </div>
+                          <div class="item-description">
+                            <div class="item-meta">
+                              <div class="item-post-date">
+                                <span>Today, 12:29 pm</span>
+                              </div>
+                              <ul class="list-inline product-social">
+                                <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+                              </ul>
+                            </div>
+                            <div class="item-title">
+                              <h3><a href="#">Product Title Goes Here</a></h3>
+                            </div>
+                            <div class="item-info">
+                              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
+                            </div>
+                          </div><!-- item-description -->
+                        </div><!-- item -->
+                        </li><!-- item-wrap -->
+
+                        <li class="item-wrap">
+                          <div class="item">
+                          <div class="item-image">
+                            <a href="details.html"><img src="images/item/9.jpg" alt="" class="img-responsive"></a>
+                            <div class="item-price">
+                              <span>$45</span>
+                            </div>
+                          </div>
+                          <div class="item-description">
+                            <div class="item-meta">
+                              <div class="item-post-date">
+                                <span>Today, 12:29 pm</span>
+                              </div>
+                              <ul class="list-inline product-social">
+                                <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+                              </ul>
+                            </div>
+                            <div class="item-title">
+                              <h3><a href="#">Product Title Goes Here</a></h3>
+                            </div>
+                            <div class="item-info">
+                              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
+                            </div>
+                          </div><!-- item-description -->
+                        </div><!-- item -->
+                        </li><!-- item-wrap -->
+
+                        <li class="item-wrap">
+                          <div class="item">
+                            <div class="item-image">
+                            <a href="details.html"><img src="images/item/10.jpg" alt="" class="img-responsive"></a>
+                            <div class="item-price">
+                              <span>$45</span>
+                            </div>
+                          </div>
+                          <div class="item-description">
+                            <div class="item-meta">
+                              <div class="item-post-date">
+                                <span>Today, 12:29 pm</span>
+                              </div>
+                              <ul class="list-inline product-social">
+                                <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+                              </ul>
+                            </div>
+                            <div class="item-title">
+                              <h3><a href="#">Product Title Goes Here</a></h3>
+                            </div>
+                            <div class="item-info">
+                              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
+                            </div>
+                          </div><!-- item-description -->
+                        </div><!-- item -->
+                        </li><!-- item-wrap -->
+
+                        <li class="item-wrap">
+                          <div class="item">
+                          <div class="item-image">
+                            <a href="details.html"><img src="images/item/11.jpg" alt="" class="img-responsive"></a>
+                            <div class="item-price">
+                              <span>$45</span>
+                            </div>
+                          </div>
+                          <div class="item-description">
+                            <div class="item-meta">
+                              <div class="item-post-date">
+                                <span>Today, 12:29 pm</span>
+                              </div>
+                              <ul class="list-inline product-social">
+                                <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+                              </ul>
+                            </div>
+                            <div class="item-title">
+                              <h3><a href="#">Product Title Goes Here</a></h3>
+                            </div>
+                            <div class="item-info">
+                              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
+                            </div>
+                          </div><!-- item-description -->
+                        </div><!-- item -->
+                        </li><!-- item-wrap -->
+                      </ul>
+                    </div><!-- tab-pane -->
+
+                    <div role="tabpanel" class="tab-pane" id="Random">
+                      <ul>
+                        <li class="item-wrap">
+                          <div class="item">
+                          <div class="item-image">
+                            <a href="details.html"><img src="images/item/12.jpg" alt="" class="img-responsive"></a>
+                            <div class="item-price">
+                              <span>$45</span>
+                            </div>
+                          </div>
+                          <div class="item-description">
+                            <div class="item-meta">
+                              <div class="item-post-date">
+                                <span>Today, 12:29 pm</span>
+                              </div>
+                              <ul class="list-inline product-social">
+                                <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+                              </ul>
+                            </div>
+                            <div class="item-title">
+                              <h3><a href="#">Product Title Goes Here</a></h3>
+                            </div>
+                            <div class="item-info">
+                              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
+                            </div>
+                          </div><!-- item-description -->
+                        </div><!-- item -->
+                        </li><!-- item-wrap -->
+
+                        <li class="item-wrap">
+                          <div class="item">
+                          <div class="item-image">
+                            <a href="details.html"><img src="images/item/13.jpg" alt="" class="img-responsive"></a>
+                            <div class="item-price">
+                              <span>$45</span>
+                            </div>
+                          </div>
+                          <div class="item-description">
+                            <div class="item-meta">
+                              <div class="item-post-date">
+                                <span>Today, 12:29 pm</span>
+                              </div>
+                              <ul class="list-inline product-social">
+                                <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+                              </ul>
+                            </div>
+                            <div class="item-title">
+                              <h3><a href="#">Product Title Goes Here</a></h3>
+                            </div>
+                            <div class="item-info">
+                              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
+                            </div>
+                          </div><!-- item-description -->
+                        </div><!-- item -->
+                        </li><!-- item-wrap -->
+
+                        <li class="item-wrap">
+                          <div class="item">
+                          <div class="item-image">
+                            <a href="details.html"><img src="images/item/14.jpg" alt="" class="img-responsive"></a>
+                            <div class="item-price">
+                              <span>$45</span>
+                            </div>
+                          </div>
+                          <div class="item-description">
+                            <div class="item-meta">
+                              <div class="item-post-date">
+                                <span>Today, 12:29 pm</span>
+                              </div>
+                              <ul class="list-inline product-social">
+                                <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+                              </ul>
+                            </div>
+                            <div class="item-title">
+                              <h3><a href="#">Product Title Goes Here</a></h3>
+                            </div>
+                            <div class="item-info">
+                              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
+                            </div>
+                          </div><!-- item-description -->
+                        </div><!-- item -->
+                        </li><!-- item-wrap -->
+
+                        <li class="item-wrap">
+                          <div class="item">
+                          <div class="item-image">
+                            <a href="details.html"><img src="images/item/15.jpg" alt="" class="img-responsive"></a>
+                            <div class="item-price">
+                              <span>$45</span>
+                            </div>
+                          </div>
+                          <div class="item-description">
+                            <div class="item-meta">
+                              <div class="item-post-date">
+                                <span>Today, 12:29 pm</span>
+                              </div>
+                              <ul class="list-inline product-social">
+                                <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+                              </ul>
+                            </div>
+                            <div class="item-title">
+                              <h3><a href="#">Product Title Goes Here</a></h3>
+                            </div>
+                            <div class="item-info">
+                              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
+                            </div>
+                          </div><!-- item-description -->
+                        </div><!-- item -->
+                        </li><!-- item-wrap -->
+                      </ul>
+                    </div><!-- tab-pane-->
+                  </div>
+              </div>
+            </div><!-- category-tab-->
+          </div>
+          <div class="pager-section">
+            <ul class="pagination ">
+              <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li class="active"><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li><a href="#">6</a></li>
+              <li><a href="#">7</a></li>
+              <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+            </ul>
+          </div><!-- pager-section -->
+        </div>
+      </div>
+    </div>
+  </div> <!-- all-categories -->
+</div>	<!-- page -->

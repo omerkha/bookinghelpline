@@ -11,7 +11,7 @@ app.directive('head', function() {
 app.directive('navi', function() {
 	return {
 		templateUrl: dir+'navi.html',
-		controller: 'HomeCtrl',
+		controller: 'NaviCtrl',
 	}
 })
 

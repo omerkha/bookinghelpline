@@ -116,15 +116,15 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-6 col-md-3">
+          <div ng-repeat="cat in cats" class="col-sm-6 col-md-3">
             <div class="category-avt">
               <div class="category-icon">
-                <a href="#">
+                <a href="{{cat.url}}">
                   <!-- <img src="assets/images/icon/1.png" alt="assets/images" class="img-responsive"> -->
-                  <i class="fa fa-exclamation-triangle mb-10" aria-hidden="true"></i>
+                  <i class="fa fa-{{cat.icon}} mb-10" aria-hidden="true"></i>
                 </a>
               </div>
-              <h5><a href="#">Health & Safety <span>(2056 courses)</span></a> </h5>
+              <h5><a href="{{cat.url}}">{{cat.name}} <span>(2056 courses)</span></a> </h5>
               <ul>
                 <li><a href="#">NEBOSH General Certificate</a></li>
                 <li><a href="#">NEBOSH Environmental</a></li>
@@ -133,11 +133,11 @@
               </ul>
             </div><!-- category-avt -->
           </div>
-          <div class="col-sm-6 col-md-3">
+          <!-- <div class="col-sm-6 col-md-3">
             <div class="category-avt">
               <div class="category-icon">
                 <a href="#">
-                  <!-- <img src="assets/images/icon/2.png" alt="assets/images" class="img-responsive"> -->
+                  <img src="assets/images/icon/2.png" alt="assets/images" class="img-responsive">
                   <i class="fa fa-building-o mb-10" aria-hidden="true"></i>
                 </a>
               </div>
@@ -148,13 +148,13 @@
                 <li><a href="#">SSSTS (2 Day)</a></li>
                 <li><a href="#">SSSTS Refresher (1 Day)</a></li>
               </ul>
-            </div><!-- category-avt -->
+            </div><!-- category-avt
           </div>
           <div class="col-sm-6 col-md-3">
             <div class="category-avt">
               <div class="category-icon">
                 <a href="#">
-                  <!-- <img src="assets/images/icon/3.png" alt="assets/images" class="img-responsive"> -->
+                  <!-- <img src="assets/images/icon/3.png" alt="assets/images" class="img-responsive">
                   <i class="fa fa-medkit mb-10" aria-hidden="true"></i>
                 </a>
               </div>
@@ -165,13 +165,13 @@
                 <li><a href="#">First Aid at Work Refresher</a></li>
                 <li><a href="#">Paediatric First Aid</a></li>
               </ul>
-            </div><!-- category-avt -->
+            </div><!-- category-avt
           </div>
           <div class="col-sm-6 col-md-3">
             <div class="category-avt">
               <div class="category-icon">
                 <a href="#">
-                  <!-- <img src="assets/images/icon/fire.png" alt="assets/images" class="img-responsive"> -->
+                  <!-- <img src="assets/images/icon/fire.png" alt="assets/images" class="img-responsive">
                   <i class="fa fa-fire mb-10" aria-hidden="true"></i>
                 </a>
               </div>
@@ -182,13 +182,13 @@
                 <li><a href="#">NEBOSH Fire Conversion</a></li>
                 <li><a href="#">Fire Extinguisher</a></li>
               </ul>
-            </div><!-- category-avt -->
+            </div><!-- category-avt
           </div>
           <div class="col-sm-6 col-md-3">
             <div class="category-avt">
               <div class="category-icon">
                 <a href="#">
-                  <!-- <img src="assets/images/icon/5.png" alt="assets/images" class="img-responsive"> -->
+                  <!-- <img src="assets/images/icon/5.png" alt="assets/images" class="img-responsive">
                   <i class="fa fa-cutlery mb-10" aria-hidden="true"></i>
                 </a>
               </div>
@@ -199,13 +199,13 @@
                 <li><a href="#">Level 4 Food Hygiene</a></li>
                 <li><a href="#">Level 2 Award for Personal License Holders (APLH)</a></li>
               </ul>
-            </div><!-- category-avt -->
+            </div><!-- category-avt
           </div>
           <div class="col-sm-6 col-md-3">
             <div class="category-avt">
               <div class="category-icon">
                 <a href="#">
-                  <!-- <img src="assets/images/icon/5.png" alt="assets/images" class="img-responsive"> -->
+                  <!-- <img src="assets/images/icon/5.png" alt="assets/images" class="img-responsive">
                   <i class="fa fa-home mb-10" aria-hidden="true"></i>
                 </a>
               </div>
@@ -216,13 +216,13 @@
                 <li><a href="#">Flexible Training Dates</a></li>
                 <li><a href="#">Training Venue</a></li>
               </ul>
-            </div><!-- category-avt -->
+            </div><!-- category-avt
           </div>
           <div class="col-sm-6 col-md-3">
             <div class="category-avt">
               <div class="category-icon">
                 <a href="#">
-                  <!-- <img src="assets/images/icon/5.png" alt="assets/images" class="img-responsive"> -->
+                  <!-- <img src="assets/images/icon/5.png" alt="assets/images" class="img-responsive">
                   <i class="fa fa-signal mb-10" aria-hidden="true"></i>
                 </a>
               </div>
@@ -233,13 +233,13 @@
                 <li><a href="#">Scaffold Inspection</a></li>
                 <li><a href="#">Safety Harness</a></li>
               </ul>
-            </div><!-- category-avt -->
+            </div><!-- category-avt
           </div>
           <div class="col-sm-6 col-md-3">
             <div class="category-avt">
               <div class="category-icon">
                 <a href="#">
-                  <!-- <img src="assets/images/icon/5.png" alt="assets/images" class="img-responsive"> -->
+                  <!-- <img src="assets/images/icon/5.png" alt="assets/images" class="img-responsive">
                   <i class="fa fa-university mb-10" aria-hidden="true"></i>
                 </a>
               </div>
@@ -250,8 +250,8 @@
                 <li><a href="#">Disability Awareness</a></li>
                 <li><a href="#">COSHH</a></li>
               </ul>
-            </div><!-- category-avt -->
-          </div>
+            </div><!-- category-avt
+          </div> -->
         </div>
       </div><!-- services -->
     </div><!-- container -->
@@ -277,22 +277,22 @@
       </div>
       <div id="top-featured">
 
-        <div class="featured-item">
+        <div class="featured-item" ng-repeat="course in courses" ng-if="course.cf_823 == 1" >
           <div class="featured-title">
-            <h3><a href="#">CITB SMSTS 5 Day Course</a></h3>
-            <h4><a href="#">Health & Safety</a></h4>
+            <h3 title="{{course.productname}}"><a href="#">{{course.productname | limitTo:22}}...</a></h3>
+            <h4><a href="#">{{course.productcategory}}</a></h4>
           </div>
           <div class="featured-image">
-            <a href="details.html"><img src="assets/images/featured/1.jpg" alt="" class="img-responsive"></a>
+            <a href="/course/{{course.productname | slugify}}"><img src="{{course.cf_825}}" alt="" class="img-responsive"></a>
           </div>
 
           <!-- ad-info -->
           <div class="product-meta">
             <div class="item-info">
-              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
+              <p>{{course.description | limitTo:80}}</p>
             </div>
             <div class="item-price">
-              <span>£150</span>
+              <span>£{{course.unit_price | number:0}}</span>
             </div>
             <ul class="list-inline product-social">
               <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
@@ -302,155 +302,6 @@
           </div><!-- ad-info -->
         </div><!-- featured -->
 
-        <div class="featured-item">
-          <div class="featured-title">
-            <h3><a href="#">IOSH Directing Course</a></h3>
-            <h4><a href="#">Health & Safety</a></h4>
-          </div>
-          <div class="featured-image">
-            <a href="details.html"><img src="assets/images/featured/2.jpg" alt="" class="img-responsive"></a>
-          </div>
-
-          <!-- ad-info -->
-          <div class="product-meta">
-            <div class="item-info">
-              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
-            </div>
-            <div class="item-price">
-              <span>£1250</span>
-            </div>
-            <ul class="list-inline product-social">
-              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-            </ul>
-          </div><!-- ad-info -->
-        </div><!-- featured -->
-
-        <div class="featured-item">
-          <div class="featured-title">
-            <h3><a href="#">First Aid at Work Course</a></h3>
-            <h4><a href="#">First Aid</a></h4>
-          </div>
-          <div class="featured-image">
-            <a href="details.html"><img src="assets/images/featured/3.jpg" alt="" class="img-responsive"></a>
-          </div>
-
-          <!-- ad-info -->
-          <div class="product-meta">
-            <div class="item-info">
-              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
-            </div>
-            <div class="item-price">
-              <span>£970</span>
-            </div>
-            <ul class="list-inline product-social">
-              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-            </ul>
-          </div><!-- ad-info -->
-        </div><!-- featured -->
-
-        <div class="featured-item">
-          <div class="featured-title">
-            <h3><a href="#">Level 4 Food Safety</a></h3>
-            <h4><a href="#">Food Safety</a></h4>
-          </div>
-          <div class="featured-image">
-            <a href="details.html"><img src="assets/images/featured/4.jpg" alt="" class="img-responsive"></a>
-          </div>
-
-          <!-- ad-info -->
-          <div class="product-meta">
-            <div class="item-info">
-              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
-            </div>
-            <div class="item-price">
-              <span>£165</span>
-            </div>
-            <ul class="list-inline product-social">
-              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-            </ul>
-          </div><!-- ad-info -->
-        </div><!-- featured -->
-
-        <div class="featured-item">
-          <div class="featured-title">
-            <h3><a href="#">Fire Marshal Course</a></h3>
-            <h4><a href="#">Fire Safety</a></h4>
-          </div>
-          <div class="featured-image">
-            <a href="details.html"><img src="assets/images/featured/5.jpg" alt="" class="img-responsive"></a>
-          </div>
-
-          <!-- ad-info -->
-          <div class="product-meta">
-            <div class="item-info">
-              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
-            </div>
-            <div class="item-price">
-              <span>£970</span>
-            </div>
-            <ul class="list-inline product-social">
-              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-            </ul>
-          </div><!-- ad-info -->
-        </div><!-- featured -->
-
-        <div class="featured-item">
-          <div class="featured-title">
-            <h3><a href="#">Abrasive Wheels Course</a></h3>
-            <h4><a href="#">Construction</a></h4>
-          </div>
-          <div class="featured-image">
-            <a href="details.html"><img src="assets/images/featured/6.jpg" alt="" class="img-responsive"></a>
-          </div>
-
-          <!-- ad-info -->
-          <div class="product-meta">
-            <div class="item-info">
-              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
-            </div>
-            <div class="item-price">
-              <span>£125</span>
-            </div>
-            <ul class="list-inline product-social">
-              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-            </ul>
-          </div><!-- ad-info -->
-        </div><!-- featured -->
-
-        <div class="featured-item">
-          <div class="featured-title">
-            <h3><a href="#">Asbestos Awareness</a></h3>
-            <h4><a href="#">Construction</a></h4>
-          </div>
-          <div class="featured-image">
-            <a href="details.html"><img src="assets/images/featured/7.jpg" alt="" class="img-responsive"></a>
-          </div>
-
-          <!-- ad-info -->
-          <div class="product-meta">
-            <div class="item-info">
-              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
-            </div>
-            <div class="item-price">
-              <span>£1465</span>
-            </div>
-            <ul class="list-inline product-social">
-              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-            </ul>
-          </div><!-- ad-info -->
-        </div><!-- featured -->
       </div>
     </div>
   </div><!-- #featured-ads -->
