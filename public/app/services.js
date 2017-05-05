@@ -27,7 +27,7 @@ app.service('func', function($http) {
   var func = {};
 
   func.getCourses = function(cb) {
-    $http.post('http://hshelpline.co.uk/custom/api/get-products.php').then(function(resp) {
+    $http.post('https://hshelpline.co.uk/custom/api/get-products.php').then(function(resp) {
       var courses = resp.data;
       cb(courses);
     })
