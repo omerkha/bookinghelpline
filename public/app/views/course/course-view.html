@@ -92,26 +92,25 @@
                     <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
                   </ul>
                 </div><!-- item-info -->
-                <div class="item-info">
+                <div ng-if="currCourse.description" class="item-info">
                   <h4>Description</h4>
                   <p>{{currCourse.description}}</p>
                 </div><!-- item-info -->
-                <div class="item-info">
-                  <h4>Other Info</h4>
-                  <ul>
-                    <li>Consectetur adipisicing elit</li>
-                    <li>Sed do eiusmod tempor incididunt</li>
-                    <li>Quis nostrud exercitation ullamco </li>
-                    <li>Labore et dolore magna aliqua</li>
-                    <li>Ut enim ad minim veniam</li>
-                    <li>Consectetur adipisicing elit</li>
-                    <li>Sed do eiusmod tempor incididunt</li>
-                    <li>Quis nostrud exercitation ullamco </li>
-                    <li>Labore et dolore magna aliqua</li>
-                    <li>Ut enim ad minim veniam</li>
-                    <li>Consectetur adipisicing elit</li>
-                    <li>Sed do eiusmod tempor incididunt</li>
-                  </ul>
+                <div ng-if="currCourse.cf_831" class="item-info">
+                  <h4>Duration</h4>
+                  <p>{{currCourse.cf_831}}</p>
+                </div><!-- item-info -->
+                <div ng-if="currCourse.cf_829" class="item-info">
+                  <h4>Course Objectives</h4>
+                  <p>{{currCourse.cf_829}}</p>
+                </div><!-- item-info -->
+                <div ng-if="currCourse.cf_833" class="item-info">
+                  <h4>What is Required to Pass</h4>
+                  <p>{{currCourse.cf_833}}</p>
+                </div><!-- item-info -->
+                <div ng-if="currCourse.cf_835" class="item-info">
+                  <h4>Entry Requirements</h4>
+                  <p>{{currCourse.cf_835}}</p>
                 </div><!-- item-info -->
               </div>
               </div><!-- item -->
