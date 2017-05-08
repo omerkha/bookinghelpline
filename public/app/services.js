@@ -1,6 +1,6 @@
 app.factory('details', function() {
     return {
-        number: '0208 771 2362',
+        number: '020 3818 3838',
         email: 'info@citywindowsandglass.co.uk'
     }
 })
@@ -31,6 +31,17 @@ app.service('func', function($http) {
       var courses = resp.data;
       cb(courses);
     })
+  }
+
+  func.unslug = function(slugs) {
+    slugs = slugs.replace(/_/g, '-');
+	  slugs = slugs.replace(/--/g, '-');
+
+    var list = [];
+    slugs.split('-').forEach(function(slug) {
+      list.push(slug.substr(0, 1).toUpperCase() + slug.substr(1));
+    })
+    return list.join(' ');
   }
 
 

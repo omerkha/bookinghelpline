@@ -22,11 +22,10 @@ app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $loc
 
 })
 
-app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses) {
+app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, details) {
 
   $scope.cats = cats;
-
-
+  $scope.details = details;
 
   $timeout(function () {
 
@@ -221,9 +220,10 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses) {
 }) // ctrl end
 
 
-app.controller('CatCtrl', function($scope, $timeout, $http, cats, $location, $routeParams, Slug, courses, $localStorage) {
+app.controller('CatCtrl', function($scope, $timeout, $http, cats, $location, $routeParams, Slug, courses, $localStorage, func) {
     $scope.catCourse = [];
     $scope.catName = $routeParams.catName;
+    $scope.catNameDispay = func.unslug($scope.catName);
     if($localStorage.bh !== undefined && $localStorage.bh.courses !== undefined) {
       courses = $localStorage.bh.courses;
       $scope.courses = courses;
@@ -255,12 +255,6 @@ app.controller('CatCtrl', function($scope, $timeout, $http, cats, $location, $ro
       }
     });
 
-    /*for(key in cats) {
-        if( Slug.slugify(cats[key].url) == $scope.catName ) {
-              $scope.currCat = cats[key];
-        }
-    }
-    for($scope.courses)*/
 })
 
 app.controller('CourseCtrl', function($scope, $timeout, $http, cats, $location, $routeParams, courses, Slug, $localStorage, func) {

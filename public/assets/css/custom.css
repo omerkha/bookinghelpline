@@ -2,3 +2,7 @@
   position: inherit;
   display: inline-block;
 }
+
+.cscs-card .seller-info {
+  font-size: 11px !important;
+}

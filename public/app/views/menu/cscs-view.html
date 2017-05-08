@@ -1,0 +1,299 @@
+<div head></div>
+<div navi></div>
+
+<div class="page">
+  <div id="breadcrumb-section" class="section">
+    <div class="container">
+      <div class="page-title text-center">
+        <h1>CSCS Cards</h1>
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li class="active">CSCS Cards</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- breadcrumb-section -->
+  <div id="search-section">
+    <div class="container">
+      <form action="#">
+        <div class="search-section">
+          <ul>
+            <li>
+              <div class="dropdown category-dropdown">
+                <a data-toggle="dropdown" href="#"><span class="change-text">All Categories</span> <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown-menu category-change">
+                  <li ng-repeat="cat in cats"><a href="#">{{cat.name}}</a></li>
+                </ul>
+              </div><!-- category-change -->
+            </li>
+            <li>
+              <div class="dropdown category-dropdown">
+                <a data-toggle="dropdown" href="#"><span class="change-text">All Locations</span> <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown-menu category-change">
+                  <li><a href="#">South London</a></li>
+                  <li><a href="#">Bromley</a></li>
+                  <li><a href="#">Surrey</a></li>
+                </ul>
+              </div><!-- category-change -->
+            </li>
+            <li>
+              <input type="text" class="form-control" placeholder="What are you looking for ?">
+            </li>
+            <li>
+              <button type="submit" class="form-control btn btn-primary" value="Search">Search</button>
+            </li>
+          </ul>
+        </div>
+      </form>
+    </div>
+  </div><!-- search-section -->
+
+  <div class="all-categories section">
+    <div class="container">
+      <div class="ad-details">
+        <div class="row">
+          <div class="col-md-8 col-sm-7">
+            <div class="item">
+                <div class="detail-item-image item-image carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <img src="/assets/images/item/cscs.jpg" alt="" class="img-responsive">
+                    </div>
+                  </div>
+                  <div class="item-price">
+                  <span>£399</span>
+                </div>
+              </div>
+              <div class="details-description">
+
+                <div class="item-info">
+                  <h4>What are CSCS Cards?</h4>
+                  <p>A CSCS Card shows that you have the skills required to work well in your trade and that you have the Health and Safety knowledge needed to work safely. CSCS Cards are graded by a colour system, the CSCS Card you qualify for depends on your level of training, experience and qualifications.
+Your CSCS Card will be specific to your trade and will also contain relevant information about you on its computer chip so that the information can be checked on site.
+Most principal contractors and major house builders require construction workers on their sites to hold a valid CSCS card.</p>
+                </div><!-- item-info -->
+                <div class="item-info">
+                  <h4>Do I need a CSCS Card?</h4>
+                  <p>To work on a construction site there is no legal obligation to have a card before you work on site. However, all the major contractors who are members of UKCG have agreed that workers on their sites need to have a CSCS card. The law requires that those participating in construction work must be competent.</p>
+                </div><!-- item-info -->
+                <div class="item-info">
+                  <h4>Do I need qualifications to apply for a CSCS Card?</h4>
+                  <p>To apply for a CSCS card, you must have the appropriate construction related qualifications and training. In most cases, you must have passed the CITB Health, safety and environment test within the previous two years. 
+
+If you have achieved a NVQ or a SVQ within the last two years and are applying for a CSCS card for the occupation the NVQ or SVQ relates to, you may not have to pass a CITB Health, Safety and Environment Test.</p>
+                </div><!-- item-info -->
+                <div class="item-info">
+                  <h4>Overseas Qualifications</h4>
+                  <p>The National Academic Recognition Information Centre for the United Kingdom (UK NARIC) provide a service to compare foreign qualifications with their UK equivalent. UK NARIC will issue a Statement of Comparability if a non-UK qualification is acceptable for UK Registration.</p>
+                </div><!-- item-info -->
+                <div class="item-info">
+                  <h4>How long does the CSCS card last for?</h4>
+                  <p>How long your CSCS card lasts depends on the card you’re applying for, but most cards last for five years. When you receive your card it will show an expiry date.</p>
+                </div><!-- item-info -->
+                <div class="item-info">
+                  <h4>How long does the card take to arrive?</h4>
+                  <p>Usually delivery should be within 30 working days.</p>
+                </div><!-- item-info -->
+                <div class="item-info">
+                  <h4>I’ve lost my CSCS card, how do I get a replacement?</h4>
+                  <p>Replacement CSCS card can be ordered online or over the phone we can order your replacement CSCS for you. You can call us on <a href="tel:{{details.number}}">{{details.number}}</a>.</p>
+                </div><!-- item-info -->
+                <div ng-if="currCourse.cf_841" class="item-info">
+                  <h4>Qualifications & Certification</h4>
+                  <p>{{currCourse.cf_841}}</p>
+                </div><!-- item-info -->
+              </div>
+              </div><!-- item -->
+
+          </div>
+
+
+          <div class="col-sm-5 col-md-4">
+            <div class="side-bar">
+
+              <div class="item-author widget">
+                <h4>Apply For CSCS Card</h4>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+                      Step 1
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p>Pass CITB Health, Safety and Environment Test (Operative, Supervisor, Managers, Working at Heights etc.)</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+                      Step 2
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p>Once you have passed, email us a copy of your pass certificate and qualifications you hold relevant to the level of CSCS Card you are apply for.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+                      Step 3
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p>Receive your card. You can apply for your card online or over the phone by calling our advisor’s on <a href="tel:{{details.number}}">{{details.number}}</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="item-author widget cscs-card">
+                <h4>Which Type of CSCS Card Do I Need?</h4>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+                      <img src="http://hshelpline.co.uk/images/cards/c-2.jpg">
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p>Red CSCS Card There are 6 types of Red CSCS Card – Trainee (Craft & Operative), Trainee (TSM), Experienced Worker, Experienced TSM, Provisional and Apprentice. Red CSCS Cards are usually issued while workers are in further education or are working towards an NVQ/SVQ.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+                      <img src="http://hshelpline.co.uk/images/cards/c-1.jpg">
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p>Green (Labourer) CSCS Card The Green CSCS Card is issued to labourers. This CSCS Card usually requires a L1 Award in Health & Safety in a Construction Environment or SSP Health & Safety Awareness Course. Also you need to pass the Health, Safety & Environment Operative test. </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+                      <img src="http://hshelpline.co.uk/images/cards/c-7.jpg">
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p>Blue CSCS Card The Blue CSCS Card requires a Level 2 NVQ/SVQ or an City & Guilds Craft certificate. You must also pass the Health, Safety & Environment Test which is relevant to your trade to get this CSCS Card.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+                      <img src="http://hshelpline.co.uk/images/cards/c-10.jpg">
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p>Gold CSCS Card To get a Gold CSCS Card you must have an indentured apprenticeship or an NVQ/SVQ Level 3. There are both Skilled worker and Supervisor Gold CSCS Cards, you must pass either the Health, Safety & Environment Test relevant to your trade or the Supervisor test.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+                      <img src="http://hshelpline.co.uk/images/cards/c-8.jpg">
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p>Black CSCS Card The Black CSCS Card is for managers. Achievement of a Construction related NVQ/SVQ levels 5, 6 or 7 in the relevant construction management level qualification or Holding a pre-existing NVQ level 4 in construction management and the successful completion of a Health, safety and environment test for managers and professionals.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+                      <img src="http://hshelpline.co.uk/images/cards/c-11.jpg">
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p>Professionally Qualified Person This card is available to competence assessed members of CSCS approved Professional Bodies. You Must also pass the Health, safety and environment test for managers and professionals.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+                      <img src="http://hshelpline.co.uk/images/cards/c-13.jpg">
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p>Academically Qualified Person This card is available to people who have completed certain construction related degrees, HNDs, HNCs, CIOB Certificates and NEBOSH diplomas. You Must also pass the Health, safety and environment test for managers and professionals.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+                      <img src="http://hshelpline.co.uk/images/cards/c-9.jpg">
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p>Construction Site Visitor This card is available to people who frequently visit a construction site, but have no construction specific skill. You must pass the CITB Operatives Health, Safety and Environment Test.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="contact-seller widget">
+                <h4>Contact Booking Helpline</h4>
+                <form id="contact-form" class="contact-form" name="contact-form" method="post" action="#">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="text" class="form-control" required="required" placeholder="Name">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="email" class="form-control" required="required" placeholder="Email Id">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" required="required" placeholder="Subject">
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <textarea name="message" id="message" required="required" class="form-control" rows="7" placeholder="Message"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit Message</button>
+                  </div>
+
+                </form>
+              </div>
+
+
+            </div><!-- side-bar -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- all-categories -->
+</div>	<!-- page -->
+
+<div foot></div>
