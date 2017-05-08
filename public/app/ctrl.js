@@ -1,8 +1,16 @@
-app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $localStorage, func) {
+app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $localStorage, func, $location) {
   if($localStorage.bh !== undefined && $localStorage.bh.courses) {
     courses = $localStorage.bh.courses;
     $scope.courses = courses;
   } else {
+    $localStorage.bh = {};
+    func.getCourses(function(respCourses) {
+      courses = respCourses;
+      $localStorage.bh.courses = courses;
+      $scope.courses = courses;
+    })
+  }
+  if($location.path() == '/') {
     $localStorage.bh = {};
     func.getCourses(function(respCourses) {
       courses = respCourses;
