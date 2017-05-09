@@ -1,0 +1,215 @@
+<div head></div>
+<div navi></div>
+
+<div class="page">
+  <div id="breadcrumb-section" class="section">
+    <div class="container">
+      <div class="page-title text-center">
+        <h1>CSCS Test</h1>
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li class="active">CSCS Test</li>
+        </ol>
+      </div>
+    </div>
+  </div><!-- breadcrumb-section -->
+  <div id="search-section">
+    <div class="container">
+      <form action="#">
+        <div class="search-section">
+          <ul>
+            <li>
+              <div class="dropdown category-dropdown">
+                <a data-toggle="dropdown" href="#"><span class="change-text">All Categories</span> <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown-menu category-change">
+                  <li ng-repeat="cat in cats"><a href="#">{{cat.name}}</a></li>
+                </ul>
+              </div><!-- category-change -->
+            </li>
+            <li>
+              <div class="dropdown category-dropdown">
+                <a data-toggle="dropdown" href="#"><span class="change-text">All Locations</span> <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown-menu category-change">
+                  <li><a href="#">South London</a></li>
+                  <li><a href="#">Bromley</a></li>
+                  <li><a href="#">Surrey</a></li>
+                </ul>
+              </div><!-- category-change -->
+            </li>
+            <li>
+              <input type="text" class="form-control" placeholder="What are you looking for ?">
+            </li>
+            <li>
+              <button type="submit" class="form-control btn btn-primary" value="Search">Search</button>
+            </li>
+          </ul>
+        </div>
+      </form>
+    </div>
+  </div><!-- search-section -->
+
+  <div class="all-categories section">
+    <div class="container">
+      <div class="ad-details">
+        <div class="row">
+          <div class="col-md-8 col-sm-7">
+            <div class="item">
+                <div class="detail-item-image item-image carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <img src="/assets/images/item/test.jpg" alt="" class="img-responsive">
+                    </div>
+                  </div>
+                  <div class="item-price">
+                  <span>£399</span>
+                </div>
+              </div>
+              <div class="details-description">
+
+                <div class="item-info">
+                  <h4>What is the Health, Safety and Environment Test?</h4>
+                  <p>The CITB Health, safety & environment (HS&E) test ensures workers have a minimum level of health, safety and environmental awareness before going on site.</p>
+                  <p>This is a multiple choice test on health, safety and environment issues in construction, taken on a touch Screen at a local accredited testing centre.</p>
+                </div><!-- item-info -->
+                <div class="item-info">
+                  <h4>How long is the CSCS test?</h4>
+                  <p>The Health, Safety & Environment Test lasts 45 minutes. In the test there will be around 50 questions that you need to answer. If you pass, you’ll receive the ticket straight after the test. You need to keep this certificate as it is valid for two years to apply for a CSCS card. Upon a successful CSCS card application your test validity is extended until the expiry of your CSCS card (usually five years).</p>
+                </div><!-- item-info -->
+                <div class="item-info">
+                  <h4>Preparing for the Test</h4>
+                  <p>You can purchase the official Book or DVD online or over the phone by calling {{details.number}}.</p>
+                </div><!-- item-info -->
+                <div class="item-info">
+                  <h4>ID Requirements</h4>
+                  <p>Candidates are required to bring one form of identification listed below bearing a photograph and signature.</p>
+                  <ul>
+                    <li>A valid passport of any nationality with a photograph of the candidate and their signature - must be no more than 6 months out of date</li>
+                    <li>A valid UK only driving licence with a photograph of the candidate and the candidate's signature - must be no more than 6 months out of date</li>
+                  </ul>
+                  <p>If a candidate does not have one of these he or she will need two items of valid ID (no more than 6 months out of date), one from List A and one from List B below:</p>
+                  <hr>
+                  <div class="row">
+        					  <div class="col-xs-12 col-sm-6">
+                      <div class="test-column">
+                        <h4>List A</h4>
+                        <ul>
+                          <li>Non UK Driving Licence</li>
+                          <li>Passport without signature</li>
+                          <li>Work ID Card</li>
+                          <li>EU Country ID Card</li>
+                          <li>CITB Scheme Card</li>
+                          <li>Student ID Card</li>
+                          <li>Citizen Card</li>
+                          <li>Trade Union Card</li>
+                          <li>British Armed Forces Card</li>
+                          <li>Proof of Age Card</li>
+                          <li>Young Scots Card</li>
+                        </ul>
+                      </div>
+                    </div>
+        					  <div class="col-xs-12 col-sm-6">
+                      <div class="test-column">
+                        <h4>List B</h4>
+                        <ul>
+                          <li>Credit Card</li>
+                          <li>Debit Card</li>
+                          <li>Paper Driving Licence</li>
+                          <li>UK Travel Document</li>
+                          <li>Inland Revenue Card</li>
+                          <li>National Insurance Card / HMRC letter</li>
+                          <li>B79 Notification of Discharge Letter</li>
+                          <li>Bank Statement</li>
+                          <li>Building Society Passbook</li>
+                          <li>Cheque Guarantee Card</li>
+                        </ul>
+                      </div>
+                    </div>
+        					</div>
+                </div><!-- item-info -->
+                <hr>
+                <div class="item-info">
+                  <p>Photocopies of ID will not be accepted.</p> 
+                  <p>If You do not bring suitable ID You will not be allowed to take the Test.</p>
+                </div><!-- item-info -->
+              </div>
+              </div><!-- item -->
+
+          </div>
+
+
+          <div class="col-sm-5 col-md-4">
+            <div class="side-bar">
+
+              <div class="item-author widget cscs-card">
+                <h4>Types of Health, Safety and Environment Test</h4>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="ad-details item-info">
+                      <ul>
+                        <li>Health, safety and environment test for Operatives </li>
+                        <li>Health, safety and environment specialist Supervisors test</li>
+                        <li>Health, safety and environment test for Managers & Professionals</li>
+                        <li>Health, safety and environment specialist Working at Heights </li>
+                        <li>Health, safety and environment specialist Demolition test </li>
+                        <li>Health, safety and environment specialist HVACR test (Ductwork)</li>
+                        <li>Health, safety and environment specialist HVACR test (Heating & Plumbing)</li>
+                        <li>Health, safety and environment specialist Highways Works test</li>
+                        <li>Health, safety and environment specialist Lifts & Escalators test </li>
+                        <li>Health, safety and environment specialist HVACR test (Pipefitting & Welding)</li>
+                        <li>Health, safety and environment specialist Plumbing or Gas test </li>
+                        <li>Health, safety and environment specialist HVACR test (Refrigeration & Air Conditioning)</li>
+                        <li>Health, safety and environment specialist HVACR (Services & Facilities)</li>
+                        <li>Health, safety and environment specialist Tunnelling Test </li>
+                        <li>Health, safety and environment test for operative’s test for Labourers with L1 Award</li>
+                        <li>CPCS Renewal test </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="contact-seller widget">
+                <h4>Contact Booking Helpline</h4>
+                <form id="contact-form" class="contact-form" name="contact-form" method="post" action="#">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="text" class="form-control" required="required" placeholder="Name">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="email" class="form-control" required="required" placeholder="Email Id">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" required="required" placeholder="Subject">
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <textarea name="message" id="message" required="required" class="form-control" rows="7" placeholder="Message"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit Message</button>
+                  </div>
+
+                </form>
+              </div>
+
+
+            </div><!-- side-bar -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- all-categories -->
+</div>	<!-- page -->
+
+<div foot></div>

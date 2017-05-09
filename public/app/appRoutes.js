@@ -19,6 +19,11 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
         controller  : 'HomeCtrl'
     })
 
+    .when('/cscs-test', {
+        templateUrl : viewDir+'menu/test-view.html',
+        controller  : 'HomeCtrl'
+    })
+
     .when('/:catName', {
         templateUrl : viewDir+'cat/cat-view.html',
         controller  : 'CatCtrl'
