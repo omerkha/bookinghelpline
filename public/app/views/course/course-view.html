@@ -75,7 +75,7 @@
                     <span class="sr-only">Next</span>
                   </a>
                   <div class="item-price">
-                  <span>$399</span>
+                  <span>£{{currCourse.unit_price | limitTo:5}}</span>
                 </div>
               </div>
               <div class="details-description">
@@ -149,7 +149,7 @@
                       <address>
                         <span>Address:</span> {{currCourse.cf_819}}
                       </address>
-                      <p><div class="item-price course-price"><span>£{{currCourse.unit_price | limitTo:5}}</span></div></p>
+                      <p><div ng-click="addCartSubmit(currCourse.product_no)" class="item-price course-price pointer"><span>Add to Cart</span></div></p>
 
                     </div>
                   </div>

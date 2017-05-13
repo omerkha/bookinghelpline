@@ -6,3 +6,7 @@
 .cscs-card .seller-info {
   font-size: 11px !important;
 }
+
+.pointer {
+  cursor: pointer;
+}

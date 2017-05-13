@@ -24,6 +24,11 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
         controller  : 'HomeCtrl'
     })
 
+    .when('/cart', {
+        templateUrl : viewDir+'cart/cart-view.html',
+        controller  : 'CartCtrl'
+    })
+
     .when('/:catName', {
         templateUrl : viewDir+'cat/cat-view.html',
         controller  : 'CatCtrl'

@@ -19,18 +19,35 @@ app.factory('cats', function() {
   ]
 })
 
+app.factory('cart', function() {
+  return {};
+})
+
 app.factory('courses', function() {
   return {};
 })
 
-app.service('func', function($http) {
+app.service('func', function($http, cart, courses, $localStorage) {
   var func = {};
 
   func.getCourses = function(cb) {
     $http.post('https://hshelpline.co.uk/custom/api/get-products.php').then(function(resp) {
-      var courses = resp.data;
+      courses = resp.data;
       cb(courses);
     })
+  }
+
+  func.addCart = function(prodID, cb) {
+    if($localStorage.bh.cart == undefined) {
+      $localStorage.bh.cart = {};
+    }
+    var cartKey = Object.keys(cart).length;
+    for(key in $localStorage.bh.courses) {
+      if($localStorage.bh.courses[key].product_no == prodID) {
+        $localStorage.bh.cart[cartKey] = $localStorage.bh.courses[key];
+      }
+    }
+    cb(true);
   }
 
   func.unslug = function(slugs) {

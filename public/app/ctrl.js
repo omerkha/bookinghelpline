@@ -10,12 +10,19 @@ app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $loc
       $scope.courses = courses;
     })
   }
+
   if($location.path() == '/') {
     $localStorage.bh = {};
     func.getCourses(function(respCourses) {
       courses = respCourses;
       $localStorage.bh.courses = courses;
       $scope.courses = courses;
+    })
+  }
+
+  $scope.addCartSubmit = function(prodID) {
+    func.addCart(prodID, function() {
+      //$location.path();
     })
   }
 
@@ -290,28 +297,9 @@ app.controller('CourseCtrl', function($scope, $timeout, $http, cats, $location, 
     console.log($scope.currCourse);
   });
 
-  //console.log($scope.courses);
-  //$scope.courses = courses;
-  /*for(key in $scope.courses) {
-    console.log(Slug.slugify(course[key].productname));
-      if(Slug.slugify(course[key].productname) == $scope.courseSlug) {
-          $scope.currCourse = course[key];
-          alert($scope.currCourse);
-      }
-  }*/
 
+})
 
-
-    /*$scope.courses = courses;
-    $scope.courseSlug = $routeParams.courseName;
-    alert(JSON.stringify(courses));
-    for(key in courses) {
-
-        if(Slug.slugify(course[key].productname) == $scope.courseSlug) {
-            $scope.currCourse = course[key];
-            alert($scope.currCourse);
-        }
-    }*/
-
+app.controller('CartCtrl', function($scope) {
 
 })
