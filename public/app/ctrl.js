@@ -22,7 +22,7 @@ app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $loc
 
   $scope.addCartSubmit = function(prodID) {
     func.addCart(prodID, function() {
-      //$location.path();
+      $location.path('/cart');
     })
   }
 
@@ -33,6 +33,28 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
 
   $scope.cats = cats;
   $scope.details = details;
+
+
+  $scope.presentShow = function(catName) {
+    console.log(catName);
+    $('.pres-menu').removeClass('active');
+    $('[data-presmenu="'+catName+'"]').addClass('active');
+    $scope.presentCat = catName;
+  }
+
+
+
+  $timeout(function () {
+    for(key in cats) {
+      var eles = $('[data-row="'+cats[key].name+'"]');
+      for(k in eles) {
+        if(k > 3) {
+          $(eles[k])[0].remove();
+        }
+      }
+    }
+    $scope.presentShow('Construction');
+  }, 100);
 
   $timeout(function () {
 
@@ -300,6 +322,31 @@ app.controller('CourseCtrl', function($scope, $timeout, $http, cats, $location, 
 
 })
 
-app.controller('CartCtrl', function($scope) {
+app.controller('CartCtrl', function($scope, $localStorage, $location) {
+  $scope.location = $location;
+  $scope.customerData = {};
+
+  if($localStorage.bh !== undefined) {
+    $scope.cart = $localStorage.bh.cart;
+  }
+
+
+  $scope.changeQty = function(key) {
+    console.log($scope.cart);
+  }
+
+  $scope.removeItem = function(key) {
+    $scope.cart.splice(key, 1);
+    $localStorage.bh.cart = $scope.cart;
+  }
+
+  $scope.cartTotal = function() {
+    var total = 0;
+    for(var i = 0; i < $localStorage.bh.cart.length; i++){
+        var product = $localStorage.bh.cart[i];
+        total += (product.unit_price * product.qty);
+    }
+    return total;
+  }
 
 })

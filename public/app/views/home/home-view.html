@@ -13,7 +13,7 @@
                 <h2 data-animation="animated lightSpeedIn">To Booking Helpline</h2>
                 <p data-animation="animated lightSpeedIn">Find your nearest course and book it with right away with our fast system.</p>
                 <div class="ad-btn">
-                  <a href="#" class="btn btn-primary" data-animation="animated lightSpeedIn">View Courses</a>
+                  <a href="/construction" class="btn btn-primary" data-animation="animated lightSpeedIn">View Courses</a>
                 </div>
               </div>
             </div>
@@ -54,14 +54,14 @@
         </div><!-- contaioner
       </div><!-- item -->
     </div>
-    <a class="left carousel-control" href="#home-section" role="button" data-slide="prev">
+    <!--<a class="left carousel-control" href="#home-section" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
         <a class="right carousel-control" href="#home-section" role="button" data-slide="next">
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
-      </a>
+      </a> -->
   </div><!-- #home-section -->
 
   <div id="search-section">
@@ -112,7 +112,7 @@
         <div class="section-title">
           <div class="title-content">
             <h2>Browse Courses</h2>
-            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim</p>
+            <p>Look through our selection of courses and find one that is right for you.</p>
           </div>
         </div>
         <div class="row">
@@ -124,12 +124,9 @@
                   <i class="fa fa-{{cat.icon}} mb-10" aria-hidden="true"></i>
                 </a>
               </div>
-              <h5><a href="{{cat.url}}">{{cat.name}} <span>(2056 courses)</span></a> </h5>
+              <h5><a href="{{cat.url}}">{{cat.name}}</a> </h5>
               <ul>
-                <li><a href="#">NEBOSH General Certificate</a></li>
-                <li><a href="#">NEBOSH Environmental</a></li>
-                <li><a href="#">IOSH Managing Safely</a></li>
-                <li><a href="#">IOSH Directing Safely</a></li>
+                <li ng-repeat="course in courses" data-row="{{course.productcategory}}" title="{{course.productname}}" ng-if="course.productcategory == cat.name"><a href="/{{cat.url}}/{{course.productname | slugify}}">{{course.productname | limitTo: 25}}...</a></li>
               </ul>
             </div><!-- category-avt -->
           </div>
@@ -261,8 +258,8 @@
     <div class="container">
       <div class="call-to-act">
         <h1><span>Start Your Career </span> With Booking Helpline</h1>
-        <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis p</p>
-        <a href="#" class="btn btn-primary">Search Courses</a>
+        <p>Browse our courses and find the one right for your future.</p>
+        <a href="/construction" class="btn btn-primary">Search Courses</a>
       </div>
     </div>
   </div><!-- #call-to-act -->
@@ -272,18 +269,18 @@
       <div class="section-title container">
         <div class="title-content">
           <h2>Featured Courses</h2>
-          <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim</p>
+          <p>These are recommended courses we feature for their popularity and high pass rate.</p>
         </div>
       </div>
       <div id="top-featured">
 
         <div class="featured-item" ng-repeat="course in courses" ng-if="course.cf_823 == 1" >
           <div class="featured-title">
-            <h3 title="{{course.productname}}"><a href="#">{{course.productname | limitTo:22}}...</a></h3>
-            <h4><a href="#">{{course.productcategory}}</a></h4>
+            <h3 title="{{course.productname}}"><a href="#">{{course.productname | limitTo:19}}...</a></h3>
+            <h4><a href="/{{course.productcategory | slugify}}">{{course.productcategory}}</a></h4>
           </div>
           <div class="featured-image">
-            <a href="/course/{{course.productname | slugify}}"><img src="{{course.cf_825}}" alt="" class="img-responsive"></a>
+            <a href="/{{course.productcategory | slugify}}/{{course.productname | slugify}}"><img src="{{course.cf_825}}" alt="" class="img-responsive"></a>
           </div>
 
           <!-- ad-info -->
@@ -312,7 +309,7 @@
       <div class="section-title">
         <div class="title-content">
           <h2>Browse Courses</h2>
-          <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim</p>
+          <p>Look through our courses and find one suitable for you.</p>
         </div>
       </div>
       <div class="category-adds">
@@ -326,9 +323,7 @@
             </div>
             <div class="category-tab">
               <ul class="nav nav-tabs" role="tablist">
-                 <li role="presentation" class="active"><a href="#recent" aria-controls="recent" role="tab" data-toggle="tab">Recent</a></li>
-                 <li role="presentation"><a href="#popular" aria-controls="popular" role="tab" data-toggle="tab">Popular</a></li>
-                 <li role="presentation"><a href="#Random" aria-controls="Random" role="tab" data-toggle="tab">Random</a></li>
+                 <li ng-repeat="cat in cats" ng-click="presentShow(cat.name)" data-presmenu="{{cat.name}}" role="presentation" class="pres-menu"><a class="present-nav" href="" aria-controls="recent" role="tab" data-toggle="tab">{{cat.name}}</a></li>
               </ul>
               <!-- Tab panes -->
 
@@ -336,36 +331,22 @@
                   <div role="tabpanel" class="tab-pane active" id="recent">
                     <ul>
 
-                      <li class="item-wrap">
+                      <li ng-repeat="course in courses" ng-if="course.productcategory == presentCat" class="item-wrap present-item" data-present="{{course.productcategory}}">
                         <div class="item">
                           <div class="item-image-carousel item-image carousel slide" data-ride="carousel" data-interval="false">
                             <div class="carousel-inner">
                               <div class="item active">
-                                <a href="details.html"><img src="assets/images/item/2.jpg" alt="" class="img-responsive"></a>
-                              </div>
-                              <div class="item">
-                                <a href="details.html"><img src="assets/images/item/9.jpg" alt="" class="img-responsive"></a>
-                              </div>
-                              <div class="item">
-                                <a href="details.html"><img src="assets/images/item/10.jpg" alt="" class="img-responsive"></a>
+                                <a href="/{{course.productcategory | slugify}}/{{course.productname | slugify}}"><img src="{{course.cf_825}}" alt="" class="img-responsive"></a>
                               </div>
                             </div>
-                            <a class="left-control" href=".item-image-carousel" role="button" data-slide="prev">
-                              <i class="fa fa-angle-left" aria-hidden="true"></i>
-                              <span class="sr-only">Previous</span>
-                            </a>
-                              <a class="right-control" href=".item-image-carousel" role="button" data-slide="next">
-                              <i class="fa fa-angle-right" aria-hidden="true"></i>
-                              <span class="sr-only">Next</span>
-                            </a>
                           <div class="item-price">
-                            <span>£649</span>
+                            <span>£{{course.unit_price | limitTo: 5}}</span>
                           </div>
                         </div>
                         <div class="item-description">
                           <div class="item-meta">
                             <div class="item-post-date">
-                              <span>Dec 29, 10:39 pm</span>
+                              <span>{{course.start_date | date:'mediumDate'}}</span>
                             </div>
                             <ul class="list-inline product-social">
                               <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
@@ -374,572 +355,29 @@
                             </ul>
                           </div>
                           <div class="item-title">
-                            <h3><a href="#">Abrasive Wheels Course</a></h3>
+                            <h3><a href="/{{course.productcategory | slugify}}/{{course.productname | slugify}}">{{course.productname | limitTo:19}}...</a></h3>
                           </div>
                           <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
+                            <p>{{course.description | limitTo:70}}...</p>
                           </div>
                         </div><!-- item-description -->
                         </div><!-- item -->
                       </li><!-- item-wrap -->
 
-                      <li class="item-wrap">
-                        <div class="item">
-                          <div class="item-image-carousel-two item-image carousel slide" data-ride="carousel" data-interval="false">
-                            <div class="carousel-inner">
-                              <div class="item active">
-                                <a href="details.html"><img src="assets/images/item/3.jpg" alt="" class="img-responsive"></a>
-                              </div>
-                              <div class="item">
-                                <a href="details.html"><img src="assets/images/item/2.jpg" alt="" class="img-responsive"></a>
-                              </div>
-                              <div class="item">
-                                <a href="details.html"><img src="assets/images/item/6.jpg" alt="" class="img-responsive"></a>
-                              </div>
-                            </div>
-                            <a class="left-control" href=".item-image-carousel-two" role="button" data-slide="prev">
-                              <i class="fa fa-angle-left" aria-hidden="true"></i>
-                              <span class="sr-only">Previous</span>
-                            </a>
-                              <a class="right-control" href=".item-image-carousel-two" role="button" data-slide="next">
-                              <i class="fa fa-angle-right" aria-hidden="true"></i>
-                              <span class="sr-only">Next</span>
-                            </a>
-                          <div class="item-price">
-                            <span>£399</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Dec 28, 14:54 pm</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">Asbestos Awareness Course</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                        </div><!-- item -->
-                      </li><!-- item-wrap -->
-
-                      <li class="item-wrap">
-                        <div class="item">
-                          <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/4.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£19</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Dec 21, 09:23 am</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">CISRS Basic Scaffold Inspection Course</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                        </div><!-- item -->
-                      </li><!-- item-wrap -->
-
-                      <li class="item-wrap">
-                        <div class="item">
-                        <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/5.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£3950</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Dec 31, 12:59 am</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">CITB Health & Safety Awareness Course</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                      </div><!-- item -->
-                      </li><!-- item-wrap -->
-
-                      <li class="item-wrap">
-                        <div class="item">
-                        <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/6.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£545</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Dec 29, 11:32 am</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">CITB Health & Safety for Directors Course</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                      </div><!-- item -->
-                      </li><!-- item-wrap -->
-
-                      <li class="item-wrap">
-                        <div class="item">
-                        <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/13.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£45</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Today, 12:29 pm</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">CITB Site Environmental Awareness SEATS Course</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                      </div><!-- item -->
-                      </li><!-- item-wrap -->
-
-                      <li class="item-wrap">
-                        <div class="item">
-                        <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/15.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£45</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Today, 12:29 pm</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">CITB SMSTS 5 Day Course</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                      </div><!-- item -->
-                      </li><!-- item-wrap -->
-                      <li class="item-wrap">
-                        <div class="item">
-                        <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/7.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£45</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Today, 12:29 pm</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">CITB SMSTS Refresher 2 Day Course</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                      </div><!-- item -->
-                      </li><!-- item-wrap -->
-                    </ul>
-                  </div> <!--tab-pane-->
-
-                  <div role="tabpanel" class="tab-pane" id="popular">
-                    <ul>
-                      <li class="item-wrap">
-                        <div class="item">
-                        <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/7.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£45</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Today, 12:29 pm</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">CITB SSSTS 2 Day Course</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                      </div><!-- item -->
-                      </li><!-- item-wrap -->
-
-                      <li class="item-wrap">
-                        <div class="item">
-                        <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/8.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£45</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Today, 12:29 pm</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">CITB SSSTS Refresher 1 Day Course</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                      </div><!-- item -->
-                      </li><!-- item-wrap -->
-
-                      <li class="item-wrap">
-                        <div class="item">
-                        <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/9.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£45</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Today, 12:29 pm</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">IOSH Directing Safely Course</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                      </div><!-- item -->
-                      </li><!-- item-wrap -->
-
-                      <li class="item-wrap">
-                        <div class="item">
-                          <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/10.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£45</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Today, 12:29 pm</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">IOSH Leading Safely</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                      </div><!-- item -->
-                      </li><!-- item-wrap -->
-
-                      <li class="item-wrap">
-                        <div class="item">
-                        <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/11.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£45</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Today, 12:29 pm</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">IOSH Working Safely Course</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                      </div><!-- item -->
-                      </li><!-- item-wrap -->
-                    </ul>
-                  </div><!-- tab-pane -->
-
-                  <div role="tabpanel" class="tab-pane" id="Random">
-                    <ul>
-                      <li class="item-wrap">
-                        <div class="item">
-                        <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/12.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£45</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Today, 12:29 pm</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">IPAF Operator Training Course - 3a & 3b</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                      </div><!-- item -->
-                      </li><!-- item-wrap -->
-
-                      <li class="item-wrap">
-                        <div class="item">
-                        <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/13.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£45</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Today, 12:29 pm</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">NEBOSH Fire Certificate</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                      </div><!-- item -->
-                      </li><!-- item-wrap -->
-
-                      <li class="item-wrap">
-                        <div class="item">
-                        <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/14.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£45</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Today, 12:29 pm</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">NEBOSH General Certificate</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                      </div><!-- item -->
-                      </li><!-- item-wrap -->
-
-                      <li class="item-wrap">
-                        <div class="item">
-                        <div class="item-image">
-                          <a href="details.html"><img src="assets/images/item/15.jpg" alt="" class="img-responsive"></a>
-                          <div class="item-price">
-                            <span>£45</span>
-                          </div>
-                        </div>
-                        <div class="item-description">
-                          <div class="item-meta">
-                            <div class="item-post-date">
-                              <span>Today, 12:29 pm</span>
-                            </div>
-                            <ul class="list-inline product-social">
-                              <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                              <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                            </ul>
-                          </div>
-                          <div class="item-title">
-                            <h3><a href="#">PASMA Training (Standard Tower Course)</a></h3>
-                          </div>
-                          <div class="item-info">
-                            <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit.</p>
-                          </div>
-                        </div><!-- item-description -->
-                      </div><!-- item -->
-                      </li><!-- item-wrap -->
                     </ul>
                   </div><!-- tab-pane-->
                 </div>
             </div>
           </div><!-- category-tab-->
         </div>
-      <div class="view-all-ads text-center">
+      <!--<div class="view-all-ads text-center">
         <a href="#" class="btn btn-primary">View All Ads</a>
-      </div>
+      </div> -->
     </div>
   </div><!-- category-tab-->
 
 
-  <div id="bog-section" class="section">
-    <div class="container">
-      <div class="section-title">
-        <div class="title-content">
-          <h2>Blog & News</h2>
-          <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim</p>
-        </div>
-      </div>
-      <div class="blog-content">
-        <div class="row">
-          <div class="col-sm-6 col-md-4">
-            <div class="blog-post">
-              <div class="entry-thubmnail">
-                <a href="blog-detail.html"><img class="img-responsive" src="assets/images/blog/blog1.jpg" alt="" /></a>
-              </div>
-              <div class="entry-content">
-                <h3 class="entry-title"><a href="blog-detail.html">How Building Site...</a></h3>
-                <div class="entry-meta">
-                  <span>By <a href="#">Admin</a></span> | <span><a href="#">7 Comments</a></span>
-                </div>
-                <a class="date" href="#"><span>16</span> Dec</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4">
-            <div class="blog-post">
-              <div class="entry-thubmnail">
-                <a href="blog-detail.html"><img class="img-responsive" src="assets/images/blog/blog2.jpg" alt="" /></a>
-              </div>
-              <div class="entry-content">
-                <h3 class="entry-title"><a href="blog-detail.html">Everything you need...</a></h3>
-                <div class="entry-meta">
-                  <span>By <a href="#">Admin</a></span> | <span><a href="#">NoComments</a></span>
-                </div>
-                <a class="date" href="#"><span>27</span> Nov</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4">
-            <div class="blog-post">
-              <div class="entry-thubmnail">
-                <a href="blog-detail.html"><img class="img-responsive" src="assets/images/blog/blog3.jpg" alt="" /></a>
-              </div>
-              <div class="entry-content">
-                <h3 class="entry-title"><a href="blog-detail.html">Know about NEBOSH...</a></h3>
-                <div class="entry-meta">
-                  <span>By <a href="#">Admin</a></span> | <span><a href="#">8 Comments</a></span>
-                </div>
-                <a class="date" href="#"><span>24</span> Sep</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div><!-- #blog section -->
+
 
 
   <!-- newsletter -->

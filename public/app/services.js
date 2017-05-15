@@ -13,9 +13,9 @@ app.factory('cats', function() {
     {name: 'Working at Height', url: 'working-at-height', icon: 'signal'},
     {name: 'First Aid', url: 'first-aid', icon: 'medkit'},
     {name: 'Fire Safety', url: 'fire-safety', icon: 'fire'},
-    {name: 'Food Safety', url: 'food-safety', icon: 'cutlery'},
-    {name: 'In-House Training', url: 'in-house-training', icon: 'home'},
-    {name: 'E-Learning', url: 'e-learning', icon: 'university'}
+    {name: 'Food Safety', url: 'food-safety', icon: 'cutlery'}
+    /*{name: 'In-House Training', url: 'in-house-training', icon: 'home'},
+    {name: 'E-Learning', url: 'e-learning', icon: 'university'}*/
   ]
 })
 
@@ -39,12 +39,13 @@ app.service('func', function($http, cart, courses, $localStorage) {
 
   func.addCart = function(prodID, cb) {
     if($localStorage.bh.cart == undefined) {
-      $localStorage.bh.cart = {};
+      $localStorage.bh.cart = [];
     }
-    var cartKey = Object.keys(cart).length;
+    var cartKey = Object.keys($localStorage.bh.cart).length;
     for(key in $localStorage.bh.courses) {
       if($localStorage.bh.courses[key].product_no == prodID) {
-        $localStorage.bh.cart[cartKey] = $localStorage.bh.courses[key];
+        $localStorage.bh.cart.push($localStorage.bh.courses[key]);
+        $localStorage.bh.cart[cartKey].qty = 1;
       }
     }
     cb(true);

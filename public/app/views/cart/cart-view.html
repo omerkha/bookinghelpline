@@ -32,11 +32,11 @@
                               <div class="panel-body">
                                       <div class="col-md-12">
                                           <strong>Subtotal (# item)</strong>
-                                          <div class="pull-right"><span>$</span><span>200.00</span></div>
+                                          <div class="pull-right"><span>£</span><span>{{ cartTotal() }}</span></div>
                                       </div>
                                       <div class="col-md-12">
                                           <strong>Tax</strong>
-                                          <div class="pull-right"><span>$</span><span>200.00</span></div>
+                                          <div class="pull-right"><span>£</span><span>0</span></div>
                                       </div>
                                       <div class="col-md-12">
                                           <small>Shipping</small>
@@ -45,11 +45,11 @@
                                       </div>
                                       <div class="col-md-12">
                                           <strong>Order Total</strong>
-                                          <div class="pull-right"><span>$</span><span>150.00</span></div>
+                                          <div class="pull-right"><span>£</span><span>{{ cartTotal() }}</span></div>
                                           <hr>
                                       </div>
 
-                                      <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
+                                      <button ng-click="location.path('/checkout')" type="button" class="btn btn-primary btn-block cart-btn">Checkout</button>
 
                               </div>
 
@@ -61,47 +61,32 @@
                           <div class="panel panel-default">
                               <div class="panel-heading text-center"><h4>Current Cart</h4></div>
                               <div class="panel-body">
-                                 <table class="table borderless">
+                                 <table class="table borderless cart-table">
           						<thead>
-                                      <tr>
-              							<td><strong>Your Cart: # item</strong></td>
+                        <tr class="tc">
+              							<td><strong>Course Name</strong></td>
+              							<td>Unit Cost</td>
+              							<td>Qty</td>
+              							<td>Total</td>
               							<td></td>
-              							<td></td>
-              							<td></td>
-              							<td></td>
-                                      </tr>
+                          </tr>
           						</thead>
           						<tbody>
           							<!-- foreach ($order->lineItems as $line) or some such thing here -->
-          							<tr>
-          								<td class="col-md-3">
+          							<tr ng-repeat="item in cart">
+          								<td class="col-md-5 item-marg">
           								    <div class="media">
-          								         <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://lorempixel.com/460/250/" style="width: 72px; height: 72px;"> </a>
+          								         <a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{item.cf_825}}" style="width: 72px; height: 72px;"> </a>
           								         <div class="media-body">
-          								             <h5 class="media-heading"> Product Name</h5>
-          								             <h5 class="media-heading"> Product Code</h5>
+          								             <h5 class="media-heading cart-course-name">{{item.productname}}</h5>
+          								             <!-- <h5 class="media-heading">{{item.product_no}}</h5> -->
           								         </div>
           								    </div>
           								</td>
-          								<td class="text-center">$10.99</td>
-          								<td class="text-center">1</td>
-          								<td class="text-right">$32.99</td>
-          								<td class="text-right"><button type="button" class="btn btn-danger">Remove</button></td>
-          							</tr>
-                                      <tr>
-          								<td class="col-md-3">
-          								    <div class="media">
-          								         <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://lorempixel.com/460/250/" style="width: 72px; height: 72px;"> </a>
-          								         <div class="media-body">
-          								             <h5 class="media-heading"> Product Name</h5>
-          								             <h5 class="media-heading"> Product Code</h5>
-          								         </div>
-          								    </div>
-          								</td>
-          								<td class="text-center">$10.99</td>
-          								<td class="text-center">1</td>
-          								<td class="text-right"> $32.99</td>
-          								<td class="text-right"><button type="button" class="btn btn-danger">Remove</button></td>
+          								<td class="text-center item-marg">{{item.unit_price | limitTo:5}}</td>
+          								<td class="text-center item-marg"><input ng-change="changeQty($index)" class="form-control input-sm col-md-1 qty-input" type="text" placeholder="Qty" ng-model="cart[$index].qty" value="1"></td>
+          								<td class="text-center item-marg">{{item.unit_price * item.qty | limitTo:5}}</td>
+          								<td class="text-right item-marg"><button ng-click="removeItem($index)" type="button" class="btn btn-danger">Remove</button></td>
           							</tr>
           						</tbody>
           					</table>

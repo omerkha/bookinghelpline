@@ -14,6 +14,11 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
         controller  : 'HomeCtrl'
     })
 
+    .when('/about', {
+        templateUrl : viewDir+'home/about-view.html',
+        controller  : 'HomeCtrl'
+    })
+
     .when('/cscs-cards', {
         templateUrl : viewDir+'menu/cscs-view.html',
         controller  : 'HomeCtrl'
@@ -27,6 +32,21 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
     .when('/cart', {
         templateUrl : viewDir+'cart/cart-view.html',
         controller  : 'CartCtrl'
+    })
+
+    .when('/checkout', {
+        templateUrl : viewDir+'cart/checkout-view.html',
+        controller  : 'CartCtrl'
+    })
+
+    .when('/terms', {
+        templateUrl : viewDir+'other/terms-view.html',
+        controller  : 'HomeCtrl'
+    })
+
+    .when('/privacy', {
+        templateUrl : viewDir+'other/privacy-view.html',
+        controller  : 'HomeCtrl'
     })
 
     .when('/:catName', {

@@ -1,0 +1,158 @@
+<div head></div>
+<div navi></div>
+
+
+	<div class="page">
+		<div id="breadcrumb-section" class="section">
+			<div class="container">
+				<div class="page-title text-center">
+					<h1>Checkout</h1>
+					<ol class="breadcrumb">
+						<li><a href="#">Home</a></li>
+						<li class="active">Checkout</li>
+					</ol>
+				</div>
+			</div>
+		</div><!-- breadcrumb-section -->
+
+		<div class="ad-post-wrapper section">
+
+
+
+      <div class="container">
+      <div class="row">
+      	 <br>
+                  <div class="col-md-12">
+                      <div class="col-md-4 col-sm-6 col-xs-12 ">
+                          <!--REVIEW ORDER-->
+                          <div class="panel panel-default">
+                              <div class="panel-heading text-center">
+                                  <h4>Review Order</h4>
+                              </div>
+                              <div class="panel-body">
+                                      <div class="col-md-12">
+                                          <strong>Subtotal (# item)</strong>
+                                          <div class="pull-right"><span>£</span><span>{{ cartTotal() }}</span></div>
+                                      </div>
+                                      <div class="col-md-12">
+                                          <strong>Tax</strong>
+                                          <div class="pull-right"><span>£</span><span>0</span></div>
+                                      </div>
+                                      <div class="col-md-12">
+                                          <small>Shipping</small>
+                                          <div class="pull-right"><span>-</span></div>
+                                          <hr>
+                                      </div>
+                                      <div class="col-md-12">
+                                          <strong>Order Total</strong>
+                                          <div class="pull-right"><span>£</span><span>{{ cartTotal() }}</span></div>
+                                          <hr>
+                                      </div>
+
+                                      <button type="button" class="btn btn-primary btn-block cart-btn">Go To Payment</button>
+
+                              </div>
+
+                          </div>
+                          <!--REVIEW ORDER END-->
+                      </div>
+                      <div class="col-md-8 col-sm-6 col-xs-12 ">
+                          <!--SHIPPING METHOD-->
+                          <div class="panel panel-default">
+                              <div class="panel-heading text-center"><h4>Checkout</h4></div>
+                              <div class="panel-body">
+                                <form role="form">
+
+                                 <div class="row">
+                                   <div class="col-xs-12 col-sm-6 col-md-6">
+                                     <div class="form-group">
+                                         <input ng-model="customerData.first_name" type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name">
+                                     </div>
+                                   </div>
+                                   <div class="col-xs-12 col-sm-6 col-md-6">
+                                     <div class="form-group">
+                                       <input ng-model="customerData.last_name" type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name" tabindex="2">
+                                     </div>
+                                   </div>
+                                 </div>
+
+                                 <div class="row">
+                                   <div class="col-xs-12 col-sm-6 col-md-6">
+                                     <div class="form-group">
+                                         <input ng-model="customerData.email" type="text" name="first_name" id="first_name" class="form-control" placeholder="Email">
+                                     </div>
+                                   </div>
+                                   <div class="col-xs-12 col-sm-6 col-md-6">
+                                     <div class="form-group">
+                                       <input ng-model="customerData.phone" type="text" name="last_name" id="last_name" class="form-control" placeholder="Phone Number">
+                                     </div>
+                                   </div>
+                                 </div>
+
+                                 <div class="row">
+                                   <div class="col-xs-12 col-sm-6 col-md-6">
+                                     <div class="form-group">
+                                         <input ng-model="customerData.niNumber" type="text" name="first_name" id="first_name" class="form-control" placeholder="NI Number">
+                                     </div>
+                                   </div>
+                                   <div class="col-xs-12 col-sm-6 col-md-6">
+                                     <div class="form-group">
+                                       <input ng-model="customerData.dob" type="text" name="last_name" id="last_name" class="form-control" placeholder="Date of Birth">
+                                     </div>
+                                   </div>
+                                 </div>
+
+                                 <hr>
+
+                                 <div class="row">
+                                   <div class="col-xs-12 col-sm-6 col-md-6">
+                                     <div class="form-group">
+                                         <input ng-model="customerData.company" type="text" name="first_name" id="first_name" class="form-control" placeholder="Company Name">
+                                     </div>
+                                   </div>
+                                   <div class="col-xs-12 col-sm-6 col-md-6">
+                                     <div class="form-group">
+                                       <input ng-model="customerData.billingAddress" type="text" name="last_name" id="last_name" class="form-control" placeholder="Billing Address">
+                                     </div>
+                                   </div>
+                                 </div>
+
+                                 <div class="row">
+                                   <div class="col-xs-12 col-sm-6 col-md-6">
+                                     <div class="form-group">
+                                         <input ng-model="customerData.billingAddress1" type="text" name="first_name" id="first_name" class="form-control" placeholder="Billing Address 1">
+                                     </div>
+                                   </div>
+                                   <div class="col-xs-12 col-sm-6 col-md-6">
+                                     <div class="form-group">
+                                       <input ng-model="customerData.city" type="text" name="last_name" id="last_name" class="form-control" placeholder="City">
+                                     </div>
+                                   </div>
+                                 </div>
+
+                                 <div class="row">
+                                   <div class="col-xs-12 col-sm-6 col-md-6">
+                                     <div class="form-group">
+                                         <input ng-model="customerData.postcode" type="text" name="first_name" id="first_name" class="form-control" placeholder="Postcode" tabindex="1">
+                                     </div>
+                                   </div>
+                                   <div class="col-xs-12 col-sm-6 col-md-6">
+                                     <div class="form-group">
+
+                                     </div>
+                                   </div>
+                                 </div>
+
+                               </form>
+                              </div>
+                          </div>
+                          <!--SHIPPING METHOD END-->
+                      </div>
+                      </div>
+                      </div>
+      </div>
+
+
+
+		</div> <!-- ad-post -->
+	</div>	<!-- page -->

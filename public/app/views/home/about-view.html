@@ -1,46 +1,170 @@
+<div head></div>
 <div navi></div>
 
-<!--=============About Area Strart=================-->
-<div class="about-banner section-banner about-page">
+<div class="page">
+  <div id="breadcrumb-section" class="section">
     <div class="container">
-        <h2>ABOUT US</h2> <a href="/">Home</a><span>/</span><a href="#">About us</a> </div>
-</div>
-<!--Section-banner Benner End-->
-
-<!--========= About Section End===========-->
-<div class="single-about" style="margin-bottom: 60px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="about-content">
-                    <h2>Welcome To Our Industry</h2>
-                    <p>We work closely with every customers to bring their visions to life. We suggest and customise our products and services so that every detail is satisfactory to the requirements. And if you find a better price offering the same package anywhere then we will beat it with our price guarantee. With our long term business efforts in the double glazing, doors and conservatories field we are confident that we already have the best price for everyone.</p>
-
-                    <p>Our product and service guarantee is definately a winner, we are always available to help in maintenance and repairs for upto 10 years. Our home improvment managers are always ready to talk with you to make sure that you are up to date on the newest trends and design styles suitable for your plan. To get all the benefits we offer and arrange a appointment or even get a free quote then call or email us and we can help you on your journey to a fresh and improved property.</p>
-                </div>
-            </div>
-            <div class="col-sm-6" style="padding-top: 58px;">
-                <div class="col-sm-6">
-                    <div class="mission-area-single-img">
-                        <img src="/assets/img/about/mission-img1.jpg" alt="" />
-                        <img src="/assets/img/about/mission-img2.jpg" alt="" />
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="mission-area-single-img">
-                        <img src="/assets/img/about/mission-img3.jpg" alt="" />
-                    </div>
-                </div>
-
-                <div class="col-sm-6"></div>
-            </div>
-        </div>
+      <div class="page-title text-center">
+        <h1>About us</h1>
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li class="active">About us</li>
+        </ol>
+      </div>
     </div>
-</div>
+  </div><!-- breadcrumb-section -->
+  <div id="search-section">
+    <div class="container">
+      <form action="#">
+        <div class="search-section">
+          <ul>
+            <li>
+              <div class="dropdown category-dropdown">
+                <a data-toggle="dropdown" href="#"><span class="change-text">All Categories</span> <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown-menu category-change">
+                  <li ng-repeat="cat in cats"><a href="#">{{cat.name}}</a></li>
+                </ul>
+              </div><!-- category-change -->
+            </li>
+            <li>
+              <div class="dropdown category-dropdown">
+                <a data-toggle="dropdown" href="#"><span class="change-text">All Locations</span> <i class="fa fa-angle-down"></i></a>
+                <ul class="dropdown-menu category-change">
+                  <li><a href="#">South London</a></li>
+                  <li><a href="#">Bromley</a></li>
+                  <li><a href="#">Surrey</a></li>
+                </ul>
+              </div><!-- category-change -->
+            </li>
+            <li>
+              <input type="text" class="form-control" placeholder="What are you looking for ?">
+            </li>
+            <li>
+              <button type="submit" class="form-control btn btn-primary" value="Search">Search</button>
+            </li>
+          </ul>
+        </div>
+      </form>
+    </div>
+  </div><!-- search-section -->
+
+  <div class="all-categories section">
+    <div class="container">
+      <div class="ad-details">
+        <div class="row">
+          <div class="col-md-8 col-sm-7">
+            <div class="item">
+                <div class="detail-item-image item-image carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <img src="/assets/images/others/construction-courses.jpg" alt="" class="img-responsive">
+                    </div>
+                  </div>
+              </div>
+              <div class="details-description">
+
+                <div class="item-info">
+                  <p>BookingHelpline.co.uk is a search engine dedicated to training and further education. Our goal is to help individuals and companies find relevant courses or providers for Professional Development training in the UK.</p>
+                </div><!-- item-info -->
+                <div class="item-info">
+                  <p>As a company, BookingHelpline.co.uk believes wholeheartedly in the value of excellent training and continuing professional development. Through our business we help not only training providers to market their services but also those seeking professional development to find the right training for their company or themselves.</p>
+                </div><!-- item-info -->
+                <div class="item-info">
+                  <p>We work closely with HR and L&D departments and training providers in UK, helping them source the right training providers for in House / open course training and employee skills development training courses.  For every course, we present relevant information such as content, prices, start dates. Users are able to request more information as well as apply for the courses directly online.</p>
+                </div><!-- item-info -->
+                <div class="item-info">
+                  <p>BookingHelpline.co.uk makes it easier for companies and professionals to find the right training by providing a comprehensive course and training search services. This enables us to help Training Providers market their courses and increase their courses’ attendee numbers. Our site offers access to a clearly defined, attractive, and rapidly growing target audience.</p>
+                </div><!-- item-info -->
+              </div>
+            </div><!-- item -->
+
+          </div>
 
 
-  <div cta></div>
+          <div class="col-sm-5 col-md-4">
+            <div class="side-bar">
+
+              <div class="item-author widget">
+                <h4>Apply For CSCS Card</h4>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+                      Step 1
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p>Pass CITB Health, Safety and Environment Test (Operative, Supervisor, Managers, Working at Heights etc.)</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+                      Step 2
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p>Once you have passed, email us a copy of your pass certificate and qualifications you hold relevant to the level of CSCS Card you are apply for.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+                      Step 3
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p>Receive your card. You can apply for your card online or over the phone by calling our advisor’s on <a href="tel:{{details.number}}">{{details.number}}</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
 
+              <div class="contact-seller widget">
+                <h4>Contact Booking Helpline</h4>
+                <form id="contact-form" class="contact-form" name="contact-form">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="text" class="form-control" required="required" placeholder="Name">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <input type="email" class="form-control" required="required" placeholder="Email Id">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <input type="text" class="form-control" required="required" placeholder="Subject">
+                      </div>
+                    </div>
 
-  <div foot></div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <textarea name="message" id="message" required="required" class="form-control" rows="7" placeholder="Message"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit Message</button>
+                  </div>
+
+                </form>
+              </div>
+
+
+            </div><!-- side-bar -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- all-categories -->
+</div>	<!-- page -->
+
+<div foot></div>
