@@ -31,7 +31,10 @@ div.tl {text-align: left !important;}
 }
 
 #avt-category .category-avt {
-    min-height: 295px;
+  min-height: 343px;
+  max-height: 248px;
+  overflow: hidden;
+
 }
 
 .owl-carousel .owl-item img {

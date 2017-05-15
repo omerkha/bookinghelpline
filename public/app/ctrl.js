@@ -49,12 +49,12 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
       var eles = $('[data-row="'+cats[key].name+'"]');
       for(k in eles) {
         if(k > 3) {
-          $(eles[k])[0].remove();
+          //$(eles[k])[0].remove();
         }
       }
     }
     $scope.presentShow('Construction');
-  }, 100);
+  }, 500);
 
   $timeout(function () {
 
