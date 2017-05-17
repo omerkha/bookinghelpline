@@ -60,7 +60,3 @@ div.tl {text-align: left !important;}
 .item .item-title h3 {
     margin-top: 15px;
 }
-
-.tab-pane .item-wrap:nth-child(-n+3) {
-  margin-top: 0px;
-}

@@ -46,6 +46,16 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
         controller  : 'CartCtrl'
     })
 
+    .when('/checkout-success', {
+        templateUrl : viewDir+'cart/success-view.html',
+        controller  : 'CartCtrl'
+    })
+
+    .when('/checkout-error', {
+        templateUrl : viewDir+'cart/error-view.html',
+        controller  : 'CartCtrl'
+    })
+
     .when('/terms', {
         templateUrl : viewDir+'other/terms-view.html',
         controller  : 'HomeCtrl'

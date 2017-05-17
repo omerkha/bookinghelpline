@@ -19,7 +19,8 @@
     "ngstorage": "^0.3.11",
     "underscore": "^1.8.3",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
-    "angular-moment-picker": "moment-picker#^0.10.0"
+    "angular-moment-picker": "moment-picker#^0.10.0",
+    "SVG-Loaders": "svg-loaders#^1.0.2"
   },
   "resolutions": {
     "angular": "~1.5.6",

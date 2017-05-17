@@ -61,7 +61,7 @@
                     </div>
                   </div>
                   <div class="item-price">
-                  <span>£45.00</span>
+                  <span>£{{cscsCourse.unit_price | limitTo: 5}}</span>
                 </div>
               </div>
               <div class="details-description">
@@ -98,10 +98,7 @@ If you have achieved a NVQ or a SVQ within the last two years and are applying f
                   <h4>I’ve lost my CSCS card, how do I get a replacement?</h4>
                   <p>Replacement CSCS card can be ordered online or over the phone we can order your replacement CSCS for you. You can call us on <a href="tel:{{details.number}}">{{details.number}}</a>.</p>
                 </div><!-- item-info -->
-                <div ng-if="currCourse.cf_841" class="item-info">
-                  <h4>Qualifications & Certification</h4>
-                  <p>{{currCourse.cf_841}}</p>
-                </div><!-- item-info -->
+
               </div>
               </div><!-- item -->
 
@@ -145,7 +142,8 @@ If you have achieved a NVQ or a SVQ within the last two years and are applying f
                   </div>
                   <div class="col-md-8">
                     <div class="seller-info">
-                      <p>Receive your card. You can apply for your card online or over the phone by calling our advisor’s on <a href="tel:{{details.number}}">{{details.number}}</a></p>
+                      <p>Receive your card. You can apply for your card online or over the phone by calling our advisor’s on <a href="tel:{{details.number}}">{{details.number}}</a></p><br>
+                      <p><div ng-click="addCartSubmit(cscsCourse.product_no)" class="item-price course-price pointer"><span>Add to Cart</span></div></p>
                     </div>
                   </div>
                 </div>

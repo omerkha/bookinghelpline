@@ -12,7 +12,7 @@
         </ol>
       </div>
     </div>
-  </div><!-- breadcrumb-section -->
+  </div><!-- breadcrumb-section
   <div id="search-section">
     <div class="container">
       <form action="#">
@@ -24,7 +24,7 @@
                 <ul class="dropdown-menu category-change">
                   <li ng-repeat="cat in cats"><a href="#">{{cat.name}}</a></li>
                 </ul>
-              </div><!-- category-change -->
+              </div><!-- category-change
             </li>
             <li>
               <div class="dropdown category-dropdown">
@@ -34,7 +34,7 @@
                   <li><a href="#">Bromley</a></li>
                   <li><a href="#">Surrey</a></li>
                 </ul>
-              </div><!-- category-change -->
+              </div><!-- category-change
             </li>
             <li>
               <input type="text" class="form-control" placeholder="What are you looking for ?">
@@ -61,7 +61,7 @@
                     </div>
                   </div>
                   <div class="item-price">
-                  <span>£34.99</span>
+                  <span>£{{cscsTest.unit_price | limitTo: 5}}</span>
                 </div>
               </div>
               <div class="details-description">
@@ -140,10 +140,26 @@
           <div class="col-sm-5 col-md-4">
             <div class="side-bar">
 
+              <div class="item-author widget">
+                <h4>Apply For Health & Safety Test</h4>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="seller-image">
+
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="seller-info">
+                      <p><div ng-click="addCartSubmit(cscsTest.product_no)" class="item-price course-price pointer"><span>Add to Cart</span></div></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="item-author widget cscs-card">
-                <h4>Types of Health, Safety and Environment Test</h4>
                 <div class="row">
                   <div class="col-md-12">
+                    <h4>Types of Health, Safety and Environment Test</h4>
                     <div class="ad-details item-info">
                       <ul>
                         <li>Health, safety and environment test for Operatives </li>

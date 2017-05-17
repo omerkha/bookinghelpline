@@ -1,18 +1,33 @@
 app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $localStorage, func, $location) {
+  $scope.getOthers = function() {
+    for(key in $scope.courses) {
+      if($scope.courses[key].productname == 'CSCS Cards') {
+        $scope.cscsCourse = $scope.courses[key];
+      }
+      if($scope.courses[key].productname == 'Health & Safety Test') {
+        $scope.cscsTest = $scope.courses[key];
+      }
+    }
+    console.log($scope.cscsTest);
+  }
+
   if($localStorage.bh !== undefined && $localStorage.bh.courses) {
     courses = $localStorage.bh.courses;
     $scope.courses = courses;
+
+    $scope.getOthers();
   } else {
     $localStorage.bh = {};
     func.getCourses(function(respCourses) {
       courses = respCourses;
       $localStorage.bh.courses = courses;
       $scope.courses = courses;
+      $scope.getOthers();
     })
   }
 
   if($location.path() == '/') {
-    $localStorage.bh = {};
+    //$localStorage.bh = {};
     func.getCourses(function(respCourses) {
       courses = respCourses;
       $localStorage.bh.courses = courses;
@@ -45,7 +60,7 @@ app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $loc
 
   $timeout(function() {
     $('body').show();
-  }, 100)
+  }, 600)
 
   $timeout(function () {
 
@@ -81,7 +96,7 @@ app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $loc
         }
 
     });
-  }, 2100);
+  }, 2500);
 
 
 })
@@ -325,9 +340,11 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
   $scope.location = $location;
   $scope.customerData = {};
   $scope.cardDetails = {};
-  if($localStorage.bh !== undefined) {
+  if($localStorage.bh !== undefined && $localStorage.bh.cart) {
     $scope.cart = $localStorage.bh.cart;
-    $scope.customerData = $localStorage.bh.customerData;
+    if($localStorage.bh.customerData !== undefined) {
+        $scope.customerData = $localStorage.bh.customerData;
+    }
   }
 
 
@@ -347,7 +364,14 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
         var product = $localStorage.bh.cart[i];
         total += (product.unit_price * product.qty);
     }
-    $scope.cart.totalCost = total;
+    total = Math.round(total * 100) / 100;
+    $scope.customerData.totalCost = Math.round(total * 100) / 100;
+    if($localStorage.bh.customerData !== undefined) {
+      $localStorage.bh.customerData.totalCost = total;
+    }
+
+
+    total = Math.round(total * 100) / 100;
     return total;
   }
 
@@ -367,6 +391,9 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
         $scope.customerData.paypalToken = token;
         $localStorage.bh.customerData = $scope.customerData;
         $location.path('/payment');
+        func.addProducts(function(prodResp) {
+
+        })
       })
     })
   }
@@ -379,6 +406,8 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
   $scope.cardDetails.type = $scope.cardTypes[0];
 
   $scope.pay = function() {
+
+    $('#spinner').removeClass('hide');
     $scope.paypalVaultObj = {
       "number": $scope.cardDetails.number,
       "type": $scope.cardDetails.type.value,
@@ -422,7 +451,7 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
               },
               "transactions":[ {
                   "amount":{
-                    "total": $scope.cart.totalCost,
+                    "total": $scope.customerData.totalCost,
                     "currency":"GBP"
                   },
                   "description":"Payment by vaulted credit card."
@@ -439,15 +468,21 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
                 'Authorization': 'Bearer '+$scope.customerData.paypalToken
               }}).then(function(result) {
                 console.log(result);
+                $('#spinner').addClass('hide');
                 $scope.customerData.payID = result.data.id;
                 $scope.customerData.payState = result.data.state;
-              })
+                $location.path('/checkout-success');
+
+              }, function(error) {
+                $location.path('/checkout-error');
+              });
 
 
 
        }, function(error) {
          if(error.data.name == 'VALIDATION_ERROR') {
            alert(error.data.details[0].field+' Field: '+error.data.details[0].issue);
+           $('#spinner').addClass('hide');
            return false;
          }
        });
