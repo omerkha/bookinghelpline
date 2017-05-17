@@ -3,7 +3,7 @@
 
 <base href="/">
 
-<div ng-cloak ng-view autoscroll></div>
+
 
 <!-- Vendor JS -->
 <!-- JQUERY LIBRARY -->
@@ -16,6 +16,8 @@
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/owl.carousel.min.js"></script>
 <script src="assets/libs/underscore/underscore-min.js"></script>
+<script src="assets/libs/moment/min/moment-with-locales.min.js"></script>
+<script src="assets/libs/angular-moment-picker/dist/angular-moment-picker.min.js"></script>
 
 <!-- Angular App JS -->
 <script src="/app/app.js"></script>
@@ -24,4 +26,4 @@
 <script src="/app/directives.js"></script>
 <script src="/app/services.js"></script>
 
-<body ng-app="app">
+<body ng-app="app" ng-cloak ng-view autoscroll>

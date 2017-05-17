@@ -4,14 +4,20 @@ var cors = require('cors');
 var express         = require('express');
 var app             = express();
 var bodyParser      = require('body-parser');
-// DB
-//var mongoose        = require('mongoose');
-// DB Collection
-//var Quote       = require(__dirname + '/server/models/quote');
-// DB config
-//var configDB = require('./config/database.js');
-// Connect DB
-//mongoose.connect(configDB.url);
+var paypal          = require('paypal-rest-sdk');
+var config          = {"port" : 5000,
+                        "api" : {
+                          'mode': 'sandbox',
+                          "client_id" : "AdDwDI2S4MYLBSAgouMbWywf9AxT-3XnZVPA9L7395vzaRXlMLfdVUzso8d8WXr3II_CM7jqvbYHgLqy",
+                          "client_secret" : "EG8_fhdki556EQ3b4S4JqyyDiY2nllfvokIoX-e1MwLpBAGW2uWGp1-xdd-5LSCvGEh6O9FLMvi4yXc8"}
+                        };
+var rest            = require('restler');
+
+var utils = {};
+utils.paypal = paypal;
+utils.config = config;
+utils.rest = rest;
+
 
 //enable cors
 app.use(cors({
@@ -40,7 +46,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // routes
-require(__dirname + '/server/routes')(app);
+require(__dirname + '/server/routes')(app, utils);
 
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));

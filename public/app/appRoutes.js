@@ -39,6 +39,11 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
         controller  : 'CartCtrl'
     })
 
+    .when('/payment', {
+        templateUrl : viewDir+'cart/payment-view.html',
+        controller  : 'CartCtrl'
+    })
+
     .when('/terms', {
         templateUrl : viewDir+'other/terms-view.html',
         controller  : 'HomeCtrl'

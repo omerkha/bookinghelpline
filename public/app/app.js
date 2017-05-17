@@ -1,1 +1,1 @@
-var app = angular.module('app',['ngRoute', 'slugifier', 'ngStorage']);
+var app = angular.module('app',['ngRoute', 'slugifier', 'ngStorage', 'moment-picker']);

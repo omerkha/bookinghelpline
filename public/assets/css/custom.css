@@ -46,3 +46,9 @@ div.tl {text-align: left !important;}
 }
 
 .present-nav {padding: 6px 15px !important;}
+
+.select-arrow {
+  position: absolute;
+  left: 88%;
+  bottom: 44%;
+}

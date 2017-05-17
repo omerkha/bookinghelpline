@@ -51,6 +51,25 @@ app.service('func', function($http, cart, courses, $localStorage) {
     cb(true);
   }
 
+  func.addLead = function(customerData, cb) {
+    $http({
+      method : 'POST',
+      url : 'https://hshelpline.co.uk/custom/api/add-lead.php',
+      data: $.param(customerData),
+      headers: {
+        'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+      }
+    }).then(function(resp) {
+      cb(resp);
+    })
+  }
+
+  func.getPaypalToken = function(cb) {
+    $http.post('/api/get-paypal-token').then(function(resp) {
+      cb(resp);
+    })
+  }
+
   func.unslug = function(slugs) {
     slugs = slugs.replace(/_/g, '-');
 	  slugs = slugs.replace(/--/g, '-');

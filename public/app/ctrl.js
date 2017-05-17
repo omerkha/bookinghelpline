@@ -1,3 +1,4 @@
+
 app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $localStorage, func, $location) {
   if($localStorage.bh !== undefined && $localStorage.bh.courses) {
     courses = $localStorage.bh.courses;
@@ -322,13 +323,14 @@ app.controller('CourseCtrl', function($scope, $timeout, $http, cats, $location, 
 
 })
 
-app.controller('CartCtrl', function($scope, $localStorage, $location) {
+app.controller('CartCtrl', function($scope, $localStorage, $location, func, $timeout) {
   $scope.location = $location;
   $scope.customerData = {};
-
+  $scope.cardDetails = {};
   if($localStorage.bh !== undefined) {
     $scope.cart = $localStorage.bh.cart;
   }
+
 
 
   $scope.changeQty = function(key) {
@@ -348,5 +350,62 @@ app.controller('CartCtrl', function($scope, $localStorage, $location) {
     }
     return total;
   }
+
+  $scope.getPaypalToken = function(cb) {
+    func.getPaypalToken(function(resp) {
+      $scope.paypalToken = resp.data.token;
+      cb($scope.paypalToken);
+    });
+  }
+
+  $scope.goPayment = function() {
+    var dateSplit = $scope.customerData.dob.split('-');
+    $scope.customerData.dob = dateSplit[2]+'-'+dateSplit[1]+'-'+dateSplit[0];
+    func.addLead($scope.customerData, function(resp) {
+      $scope.customerData.crmID = resp.data.replace(/\s/g,'');
+      $scope.getPaypalToken(function(token) {
+        $scope.customerData.paypalToken = token;
+        $localStorage.bh.customerData = $scope.customerData;
+        $location.path('/payment');
+      })
+    })
+  }
+
+  $scope.cardTypes = [
+    {name: 'Please Select Card Type', value: 0},
+    {name: 'Mastercard', value: 'mastercard'},
+    {name: 'Visa',  value: 'visa'}
+  ];
+  $scope.cardDetails.type = $scope.cardTypes[0];
+
+  $scope.pay = function() {
+    $scope.cardDetails = {
+      "number":"4417119669820331",
+      "type":'Select Card Type',
+      "expire_month":11,
+      "expire_year":2018,
+      "cvv2":"874",
+      "first_name":"Joe",
+      "last_name":"Shopper",
+      "billing_address":{
+        "line1":"52 N Main St",
+        "city":"Johnstown",
+        "country_code":"US",
+        "postal_code":"43210",
+        "state":"OH",
+        "phone":"408-334-8890"
+      },
+      "external_customer_id":"joe_shopper408-334-8890"
+    };
+  }
+
+
+
+  /*$http.post('https://api.sandbox.paypal.com/v1/vault/credit-cards/',
+    {headers: { Authorization: "Bearer <Access-Token>"}})
+    .then(function(response) {
+            service.currentUser = response.data.user;
+            console.log(service.currentUser);
+    });*/
 
 })
