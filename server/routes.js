@@ -3,7 +3,10 @@ module.exports = function(app, utils) {
 	utils.paypal.configure(utils.config.api);
 
 	app.post('/api/get-paypal-token', function(req, res) {
-  	utils.rest.post('https://api.sandbox.paypal.com/v1/oauth2/token', {
+		//var url = 'https://api.sandbox.paypal.com/v1/oauth2/token';
+		var url = 'https://api.paypal.com/v1/oauth2/token';
+
+  	utils.rest.post(url, {
 		  username: utils.config.api.client_id,
 		  password: utils.config.api.client_secret,
 		  data: {'grant_type': 'client_credentials'}

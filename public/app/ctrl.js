@@ -438,7 +438,8 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
 
     $http({
       method: 'POST',
-      url: 'https://api.sandbox.paypal.com/v1/vault/credit-cards/',
+      //url: 'https://api.sandbox.paypal.com/v1/vault/credit-cards/',
+      url: 'https://api.paypal.com/v1/vault/credit-cards/',
       data: $scope.paypalVaultObj,
       headers: {
         'Content-Type': 'application/json',
@@ -470,7 +471,8 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
 
             $http({
               method: 'POST',
-              url: 'https://api.sandbox.paypal.com/v1/payments/payment',
+              //url: 'https://api.sandbox.paypal.com/v1/payments/payment',
+              url: 'https://api.paypal.com/v1/payments/payment',
               data: $scope.paypalChargeObj,
               headers: {
                 'Content-Type': 'application/json',
