@@ -103,7 +103,7 @@ app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $loc
         }
 
     });
-  }, 2500);
+  }, 3000);
 
 
 })
