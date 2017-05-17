@@ -406,11 +406,6 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+$scope.customerData.paypalToken
       }}).then(function(result) {
-          if(result.data.name == 'VALIDATION_ERROR') {
-            alert(result.data.details[0].field+' Field: '+result.data.details[0].value);
-            return false;
-          }
-
            $scope.customerData.vaultID = result.data.id;
            $scope.paypalChargeObj = {
               "id":"CPPAY-13U467758H032001PKPIFQZI",
@@ -451,7 +446,10 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
 
 
        }, function(error) {
-           console.log(error);
+         if(error.data.name == 'VALIDATION_ERROR') {
+           alert(error.data.details[0].field+' Field: '+error.data.details[0].issue);
+           return false;
+         }
        });
 
   }
