@@ -478,8 +478,8 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
               }}).then(function(result) {
                 console.log(result);
                 $('#spinner').addClass('hide');
-                $scope.customerData.payID = result.data.id;
-                $scope.customerData.payState = result.data.state;
+                $scope.customerData.payID = result.data.transactions[0].related_resources[0].sale.id;
+                $scope.customerData.payState = result.data.transactions[0].related_resources[0].sale.state;
                 $scope.customerData.time = result.data.create_time;
                 $location.path('/checkout-success');
                 func.addPayDetails($scope.customerData, function() {
