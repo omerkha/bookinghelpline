@@ -69,20 +69,14 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
     //  select options
     // -------------------------------------------------------------
 
-    (function() {
-          $('.select-cat').on('click', function() {
-            $('this').closest('div').find('select').slideToggle(110)
-
-        });
-
-    }());
+    $('.select-cat').on('click', function() {
+      $('this').closest('div').find('select').slideToggle(110)
+    });
 
 
      // -------------------------------------------------------------
     //  Home Carousel
     // -------------------------------------------------------------
-
-    (function( $ ) {
 
         //Function to animate slider captions
         function doAnimations( elems ) {
@@ -117,14 +111,11 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
             doAnimations($animatingElems);
         });
 
-    })(jQuery);
-
 
     // -------------------------------------------------------------
     //  language Select
     // -------------------------------------------------------------
 
-   (function() {
 
         $('.category-dropdown').on('click', '.category-change a', function(ev) {
             if ("#" === $(this).attr('href')) {
@@ -134,7 +125,6 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
             }
         });
 
-    }());
 
 
 
@@ -142,35 +132,31 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
     // Accordion
     // -------------------------------------------------------------
 
-        (function () {
-            $('.collapse').on('show.bs.collapse', function() {
-                var id = $(this).attr('id');
-                $('a[href="#' + id + '"]').closest('.panel-heading').addClass('active-faq');
-                $('.list-title span').html('<i class="fa fa-minus"></i>');
-            });
+        $('.collapse').on('show.bs.collapse', function() {
+            var id = $(this).attr('id');
+            $('a[href="#' + id + '"]').closest('.panel-heading').addClass('active-faq');
+            $('.list-title span').html('<i class="fa fa-minus"></i>');
+        });
 
-            $('#advanced-filter').on('hide.bs.collapse', function() {
-                var id = $(this).attr('id');
-                $('.list-title span').html('<i class="fa fa-plus"></i>');
-            });
-        }());
+        $('#advanced-filter').on('hide.bs.collapse', function() {
+            var id = $(this).attr('id');
+            $('.list-title span').html('<i class="fa fa-plus"></i>');
+        });
 
 
     // -------------------------------------------------------------
     //  Checkbox Icon Change
     // -------------------------------------------------------------
 
-    (function () {
 
-        $('input[type="checkbox"]').change(function(){
-            if($(this).is(':checked')){
-                $(this).parent("label").addClass("checked");
-            } else {
-                $(this).parent("label").removeClass("checked");
-            }
-        });
+      $('input[type="checkbox"]').change(function(){
+          if($(this).is(':checked')){
+              $(this).parent("label").addClass("checked");
+          } else {
+              $(this).parent("label").removeClass("checked");
+          }
+      });
 
-    }());
 
 
    // -------------------------------------------------------------
@@ -196,56 +182,44 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
 
     });
 
+    $("#top-featured").owlCarousel({
+        items:4,
+        nav:true,
+        autoplay:true,
+        dots:true,
+        autoplayHoverPause:true,
+        loop:true,
+        nav:false,
+        navText: [
+    "<i class='fa fa-angle-left '></i>",
+    "<i class='fa fa-angle-right'></i>"
+    ],
+        responsive: {
+            0: {
+                items: 1,
+                slideBy:1
+            },
+            480: {
+                items: 2,
+                slideBy:1
+            },
+            991: {
+                items: 3,
+                slideBy:1
+            },
+            1000: {
+                items: 4,
+                slideBy:1
+            },
+        }
 
-  }, 100);
+    });
 
 
-  $timeout(function () {
+  }, 500);
 
 
-  // -------------------------------------------------------------
-  //  Owl Carousel
-  // -------------------------------------------------------------
 
-
-  (function() {
-
-      $("#top-featured").owlCarousel({
-          items:4,
-          nav:true,
-          autoplay:true,
-          dots:true,
-          autoplayHoverPause:true,
-          loop:true,
-          nav:false,
-          navText: [
-      "<i class='fa fa-angle-left '></i>",
-      "<i class='fa fa-angle-right'></i>"
-      ],
-          responsive: {
-              0: {
-                  items: 1,
-                  slideBy:1
-              },
-              480: {
-                  items: 2,
-                  slideBy:1
-              },
-              991: {
-                  items: 3,
-                  slideBy:1
-              },
-              1000: {
-                  items: 4,
-                  slideBy:1
-              },
-          }
-
-      });
-
-  }());
-
-}, 2000);
 
 }) // ctrl end
 
