@@ -13,6 +13,8 @@
       </div>
     </div>
   </div><!-- breadcrumb-section -->
+
+  <!--
   <div id="search-section">
     <div class="container">
       <form action="#">
@@ -25,7 +27,7 @@
                   <li ng-repeat="cat in cats"><a href="#">{{cat.name}}</a></li>
 
                 </ul>
-              </div><!-- category-change -->
+              </div>
             </li>
             <li>
               <div class="dropdown category-dropdown">
@@ -33,7 +35,7 @@
                 <ul class="dropdown-menu category-change">
                   <li><a href="#">UK</a></li>
                 </ul>
-              </div><!-- category-change -->
+              </div>
             </li>
             <li>
               <input type="text" class="form-control" placeholder="What are you looking for ?">
@@ -53,13 +55,13 @@
         <div class="col-md-3 col-sm-4">
           <div class="sidebar">
             <div class="filter-list">
-              <h4 class="list-title"><a href="categories.html"><i class="fa fa-angle-double-left" aria-hidden="true"></i> All Categories</a></h4>
+              <h4 class="list-title"><a> All Categories</a></h4>
               <ul class="list-group">
                 <li ng-repeat="cat in cats" class="active"><a href="{{cat.url}}">{{cat.name}} <!-- <span>(2056)</span> --></a>
               </ul>
             </div><!-- filter-list -->
 
-            <div class="filter-list">
+            <!--<div class="filter-list">
               <h4 class="list-title">Location</h4>
               <ul class="list-group">
                 <li><a href="#">South London <span>(56)</span></a> </li>
@@ -82,16 +84,15 @@
             </div><!-- filter-list -->
 
 
-            <div class="filter-list">
+            <!--<div class="filter-list">
               <div id="advanced-filter">
                 <div class="filter-heading">
                   <a data-toggle="collapse" data-parent="#advanced-filter" href="#advanced">
                     <h4 class="list-title">Advanced Filter<span class="pull-right"><i class="fa fa-plus"></i></span></h4>
                   </a>
-                </div><!-- filter-heading -->
+                </div>
 
                 <div id="advanced" class="panel-collapse collapse">
-                  <!-- panel-body -->
                   <div class="panel-body">
                     <h5>Conditions</h5>
                     <ul class="list-group checkbox">
@@ -105,9 +106,9 @@
                       <label for="max"><input type="text" id="max" title="maximum price" placeholder="max" value=""></label>
                       <button type="submit" class="btn btn-primary">Update Search</button>
                     </div>
-                  </div><!-- panel-body -->
+                  </div>
                 </div>
-               </div><!-- advanced-filter -->
+               </div>
             </div><!-- filter-list -->
           </div><!-- sidebar -->
         </div><!-- col-sm-4 -->
@@ -115,15 +116,15 @@
         <div class="col-md-9 col-sm-8">
           <div class="category-adds">
             <div id="category-tab">
-              <div class="tab-view">
+              <!--<div class="tab-view">
                 <ul class="list-inline">
                   <li class="grid-view-tab"><i class="fa fa-th-large" aria-hidden="true"></i></li>
                   <li class="small-view-tab active"><i class="fa fa-th" aria-hidden="true"></i></li>
                   <li class="list-view-tab"><i class="fa fa-th-list" aria-hidden="true"></i></li>
                 </ul>
-              </div>
+              </div>-->
               <div class="category-tab">
-                <ul class="nav nav-tabs" role="tablist">
+                <!--<ul class="nav nav-tabs" role="tablist">
                    <li role="presentation" class="active"><a href="#recent" aria-controls="recent" role="tab" data-toggle="tab">Recent</a></li>
                    <li role="presentation"><a href="#popular" aria-controls="popular" role="tab" data-toggle="tab">Popular</a></li>
                    <li role="presentation"><a href="#Random" aria-controls="Random" role="tab" data-toggle="tab">Random</a></li>
@@ -134,7 +135,7 @@
                     <div role="tabpanel" class="tab-pane active" id="recent">
                       <ul>
 
-                        <li class="item-wrap" ng-repeat="cat in catCourse">
+                        <li class="item-wrap" ng-repeat="cat in catCourse" ng-class="">
                           <div class="item">
                             <div class="item-image">
                             <a href="/{{catName}}/{{cat.productname | slugify}}"><img src="{{cat.cf_825}}" alt="" class="img-responsive"></a>
@@ -147,11 +148,11 @@
                               <div class="item-post-date">
                                 <span>{{cat.start_date | date:'mediumDate'}}</span>
                               </div>
-                              <ul class="list-inline product-social">
+                              <!--<ul class="list-inline product-social">
                                 <li><a href="#"><i class="fa fa-bookmark-o" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                              </ul>
+                              </ul>-->
                             </div>
                             <div class="item-title">
                               <h3><a href="/{{catName}}/{{cat.productname | slugify}}">{{cat.productname}}</a></h3>
@@ -438,7 +439,7 @@
               </div>
             </div><!-- category-tab-->
           </div>
-          <div class="pager-section">
+          <!--<div class="pager-section">
             <ul class="pagination ">
               <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
               <li><a href="#">1</a></li>

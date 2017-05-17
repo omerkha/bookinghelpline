@@ -26,7 +26,29 @@ app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $loc
     })
   }
 
+  if($location.path() == '/') {
+    $('.nav-top-menu').removeClass('active');
+    $('#home-menu').addClass('active')
+  }
+  if($location.path() == '/about') {
+    $('.nav-top-menu').removeClass('active');
+    $('#about-menu').addClass('active')
+  }
+  if($location.path() == '/cscs-cards') {
+    $('.nav-top-menu').removeClass('active');
+    $('#card-menu').addClass('active')
+  }
+  if($location.path() == '/cscs-test') {
+    $('.nav-top-menu').removeClass('active');
+    $('#test-menu').addClass('active')
+  }
+
+  $timeout(function() {
+    $('body').show();
+  }, 100)
+
   $timeout(function () {
+
     $("#top-featured").owlCarousel({
         items:4,
         nav:true,
@@ -59,7 +81,7 @@ app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $loc
         }
 
     });
-  }, 3000);
+  }, 2100);
 
 
 })
@@ -299,12 +321,13 @@ app.controller('CourseCtrl', function($scope, $timeout, $http, cats, $location, 
 
 })
 
-app.controller('CartCtrl', function($scope, $localStorage, $location, func, $timeout) {
+app.controller('CartCtrl', function($scope, $localStorage, $location, func, $timeout, $http) {
   $scope.location = $location;
   $scope.customerData = {};
   $scope.cardDetails = {};
   if($localStorage.bh !== undefined) {
     $scope.cart = $localStorage.bh.cart;
+    $scope.customerData = $localStorage.bh.customerData;
   }
 
 
@@ -324,6 +347,7 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
         var product = $localStorage.bh.cart[i];
         total += (product.unit_price * product.qty);
     }
+    $scope.cart.totalCost = total;
     return total;
   }
 
@@ -355,33 +379,84 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
   $scope.cardDetails.type = $scope.cardTypes[0];
 
   $scope.pay = function() {
-    $scope.cardDetails = {
-      "number":"4417119669820331",
-      "type":'Select Card Type',
-      "expire_month":11,
-      "expire_year":2018,
-      "cvv2":"874",
-      "first_name":"Joe",
-      "last_name":"Shopper",
+    $scope.paypalVaultObj = {
+      "number": $scope.cardDetails.number,
+      "type": $scope.cardDetails.type.value,
+      "expire_month": $scope.cardDetails.expire_month,
+      "expire_year": $scope.cardDetails.expire_year,
+      "cvv2": $scope.cardDetails.cvv2,
+      "first_name": $scope.customerData.first_name,
+      "last_name": $scope.customerData.last_name,
       "billing_address":{
-        "line1":"52 N Main St",
-        "city":"Johnstown",
-        "country_code":"US",
-        "postal_code":"43210",
-        "state":"OH",
-        "phone":"408-334-8890"
+        "line1": $scope.customerData.billingAddress,
+        "city": $scope.customerData.city,
+        "country_code":"GB",
+        "postal_code": $scope.customerData.postcode,
+        "state": $scope.customerData.county,
+        "phone": $scope.customerData.phone
       },
-      "external_customer_id":"joe_shopper408-334-8890"
+      "external_customer_id": $scope.customerData.crmID
     };
+
+    $http({
+      method: 'POST',
+      url: 'https://api.sandbox.paypal.com/v1/vault/credit-cards/',
+      data: $scope.paypalVaultObj,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+$scope.customerData.paypalToken
+      }}).then(function(result) {
+          if(result.data.name == 'VALIDATION_ERROR') {
+            alert(result.data.details[0].field+' Field: '+result.data.details[0].value);
+            return false;
+          }
+
+           $scope.customerData.vaultID = result.data.id;
+           $scope.paypalChargeObj = {
+              "id":"CPPAY-13U467758H032001PKPIFQZI",
+              "intent":"sale",
+              "payer":{
+                "payment_method":"credit_card",
+                "funding_instruments":[{
+                    "credit_card_token":{
+                      "credit_card_id": $scope.customerData.vaultID,
+                      "external_customer_id": $scope.customerData.crmID
+                    }
+                  }
+                ]
+              },
+              "transactions":[ {
+                  "amount":{
+                    "total": $scope.cart.totalCost,
+                    "currency":"GBP"
+                  },
+                  "description":"Payment by vaulted credit card."
+                }
+              ]
+            }
+
+            $http({
+              method: 'POST',
+              url: 'https://api.sandbox.paypal.com/v1/payments/payment',
+              data: $scope.paypalChargeObj,
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+$scope.customerData.paypalToken
+              }}).then(function(result) {
+                console.log(result);
+                $scope.customerData.payID = result.data.id;
+                $scope.customerData.payState = result.data.state;
+              })
+
+
+
+       }, function(error) {
+           console.log(error);
+       });
+
   }
 
 
 
-  /*$http.post('https://api.sandbox.paypal.com/v1/vault/credit-cards/',
-    {headers: { Authorization: "Bearer <Access-Token>"}})
-    .then(function(response) {
-            service.currentUser = response.data.user;
-            console.log(service.currentUser);
-    });*/
 
 })

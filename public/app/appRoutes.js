@@ -1,5 +1,7 @@
 app.config(function($routeProvider, $locationProvider, $httpProvider) {
 
+    $('body').hide();
+
     var viewDir = 'app/views/';
 
     $routeProvider
@@ -71,5 +73,6 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
     });
 
     $locationProvider.html5Mode(true);
+
 
 });

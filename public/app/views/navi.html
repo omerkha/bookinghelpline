@@ -6,7 +6,7 @@
           <div class="col-sm-6">
             <ul class="list-inline">
               <li><span><i class="fa fa-envelope-o"></i></span> <a href="#"> info@bookinghelpline.co.uk</a></li>
-              <li><span><i class="fa fa-phone"></i></span> +0789444444</li>
+              <li><span><i class="fa fa-phone"></i></span> 0203 8183 838</li>
               <li><ul class="list-inline top-social">
                   <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
                   <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
@@ -43,16 +43,16 @@
       <div class="navbar-right">
         <div class="collapse navbar-collapse" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Classroom Courses <span class="caret"></span></a>
+            <li class="nav-top-menu" id="home-menu"><a href="/">Home</a></li>
+            <li id="cat-menu"class="dropdown nav-top-menu"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Classroom Courses <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li ng-repeat="cat in cats"><a href="/{{cat.url}}">{{cat.name}}</a></li>
 
               </ul>
             </li>
-            <li class="active"><a href="/cscs-cards">CSCS Cards</a></li>
-            <li class="active"><a href="/cscs-test">CSCS Test</a></li>
-            <li class="active"><a href="/about">About Us</a></li>
+            <li class="nav-top-menu" id="card-menu"><a href="/cscs-cards">CSCS Cards</a></li>
+            <li class="nav-top-menu" id="test-menu"><a href="/cscs-test">Health & Safety Test</a></li>
+            <li class="nav-top-menu" id="about-menu"><a href="/about">About Us</a></li>
             <!-- <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Category <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="category-list.html">Main Category</a></li>

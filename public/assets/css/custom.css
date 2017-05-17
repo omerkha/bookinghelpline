@@ -52,3 +52,15 @@ div.tl {text-align: left !important;}
   left: 88%;
   bottom: 44%;
 }
+
+.item .item-description {
+    padding: 12px 25px;
+}
+
+.item .item-title h3 {
+    margin-top: 15px;
+}
+
+.tab-pane .item-wrap:nth-child(-n+3) {
+  margin-top: 0px;
+}

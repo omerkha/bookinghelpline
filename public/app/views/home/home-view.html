@@ -64,7 +64,7 @@
       </a> -->
   </div><!-- #home-section -->
 
-  <div id="search-section">
+  <!-- <div id="search-section">
     <div class="container">
       <form action="#">
         <div class="search-section">
@@ -81,7 +81,7 @@
                   <li><a href="#">Fire Safety</a></li>
                   <li><a href="#">Food Safety</a></li>
                 </ul>
-              </div><!-- category-change -->
+              </div>
             </li>
             <li>
               <div class="dropdown category-dropdown">
@@ -89,7 +89,7 @@
                 <ul class="dropdown-menu category-change">
                   <li><a href="#">First Aid at Work Course</a></li>
                 </ul>
-              </div><!-- category-change -->
+              </div>
             </li>
             <li>
               <input type="text" class="form-control" placeholder="Enter Postcode">
@@ -105,7 +105,7 @@
   <!-- search-section -->
 
 
-  <!-- avt-category -->
+  <!-- avt-category
   <div id="avt-category" class="clearfix">
     <div class="container">
       <div class="section services">
@@ -120,7 +120,7 @@
             <div class="category-avt">
               <div class="category-icon">
                 <a href="{{cat.url}}">
-                  <!-- <img src="assets/images/icon/1.png" alt="assets/images" class="img-responsive"> -->
+                  <!-- <img src="assets/images/icon/1.png" alt="assets/images" class="img-responsive">
                   <i class="fa fa-{{cat.icon}} mb-10" aria-hidden="true"></i>
                 </a>
               </div>
@@ -128,7 +128,7 @@
               <ul>
                 <li ng-repeat="course in courses" data-row="{{course.productcategory}}" title="{{course.productname}}" ng-if="course.productcategory == cat.name"><a href="/{{cat.url}}/{{course.productname | slugify}}">{{course.productname | limitTo: 25}}...</a></li>
               </ul>
-            </div><!-- category-avt -->
+            </div>
           </div>
           <!-- <div class="col-sm-6 col-md-3">
             <div class="category-avt">
@@ -248,21 +248,13 @@
                 <li><a href="#">COSHH</a></li>
               </ul>
             </div><!-- category-avt
-          </div> -->
+          </div>
         </div>
-      </div><!-- services -->
-    </div><!-- container -->
+      </div><!-- services
+    </div><!-- container
   </div><!-- category-avt -->
 
-  <div id="call-to-act">
-    <div class="container">
-      <div class="call-to-act">
-        <h1><span>Start Your Career </span> With Booking Helpline</h1>
-        <p>Browse our courses and find the one right for your future.</p>
-        <a href="/construction" class="btn btn-primary">Search Courses</a>
-      </div>
-    </div>
-  </div><!-- #call-to-act -->
+
 
   <div id="featured-avts">
     <div class="section featureds">
@@ -302,6 +294,8 @@
       </div>
     </div>
   </div><!-- #featured-ads -->
+
+
 
 
   <div class="section">
@@ -355,7 +349,7 @@
                             </ul>
                           </div>
                           <div class="item-title">
-                            <h3><a href="/{{course.productcategory | slugify}}/{{course.productname | slugify}}">{{course.productname | limitTo:19}}...</a></h3>
+                            <h3><a title="{{course.productname}}" href="/{{course.productcategory | slugify}}/{{course.productname | slugify}}">{{course.productname}}</a></h3>
                           </div>
                           <div class="item-info">
                             <p>{{course.description | limitTo:70}}...</p>
@@ -377,7 +371,15 @@
   </div><!-- category-tab-->
 
 
-
+  <div id="call-to-act">
+    <div class="container">
+      <div class="call-to-act">
+        <h1><span>Start Your Career </span> With Booking Helpline</h1>
+        <p>Browse our courses and find the one right for your future.</p>
+        <a href="/construction" class="btn btn-primary">Search Courses</a>
+      </div>
+    </div>
+  </div><!-- #call-to-act -->
 
 
   <!-- newsletter -->
