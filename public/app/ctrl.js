@@ -1,4 +1,5 @@
 app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $localStorage, func, $location) {
+
   $scope.getOthers = function() {
     for(key in $scope.courses) {
       if($scope.courses[key].productname == 'CSCS Cards') {
@@ -391,18 +392,17 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
   $scope.goPayment = function() {
     var dateSplit = $scope.customerData.dob.split('-');
     $scope.customerData.dob = dateSplit[2]+'-'+dateSplit[1]+'-'+dateSplit[0];
-    /*func.addProducts(function(prodResp) {
-      console.log(prodResp);
-    })*/
+    var cartString = ''
+    for(key in $localStorage.bh.cart) {
+      cartString += $localStorage.bh.cart[key].qty+' x '+$localStorage.bh.cart[key].productname+' ('+$localStorage.bh.cart[key].product_no+'), ';
+    }
+    $scope.customerData.cart = cartString;
     func.addLead($scope.customerData, function(resp) {
       $scope.customerData.crmID = resp.data.replace(/\s/g,'');
       $scope.getPaypalToken(function(token) {
         $scope.customerData.paypalToken = token;
         $localStorage.bh.customerData = $scope.customerData;
         $location.path('/payment');
-        /*func.addProducts(function(prodResp) {
-
-        })*/
       })
     })
   }
@@ -480,8 +480,11 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
                 $('#spinner').addClass('hide');
                 $scope.customerData.payID = result.data.id;
                 $scope.customerData.payState = result.data.state;
+                $scope.customerData.time = result.data.create_time;
                 $location.path('/checkout-success');
+                func.addPayDetails($scope.customerData, function() {
 
+                })
               }, function(error) {
                 $location.path('/checkout-error');
               });

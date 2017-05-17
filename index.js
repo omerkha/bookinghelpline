@@ -5,12 +5,25 @@ var express         = require('express');
 var app             = express();
 var bodyParser      = require('body-parser');
 var paypal          = require('paypal-rest-sdk');
-var config          = {"port" : 5000,
-                        "api" : {
-                          'mode': 'sandbox',
-                          "client_id" : "AdDwDI2S4MYLBSAgouMbWywf9AxT-3XnZVPA9L7395vzaRXlMLfdVUzso8d8WXr3II_CM7jqvbYHgLqy",
-                          "client_secret" : "EG8_fhdki556EQ3b4S4JqyyDiY2nllfvokIoX-e1MwLpBAGW2uWGp1-xdd-5LSCvGEh6O9FLMvi4yXc8"}
-                        };
+
+if(process.env.ppClientID && process.env.ppSecret) {
+  var config = {
+    "port" : 5000,
+    "api" : {
+    'mode': 'live',
+    "client_id" : process.env.ppClientID,
+    "client_secret" : process.env.ppSecret}
+  };
+} else {
+  var config = {
+    "port" : 5000,
+    "api" : {
+    'mode': 'sandbox',
+    "client_id" : 'AdDwDI2S4MYLBSAgouMbWywf9AxT-3XnZVPA9L7395vzaRXlMLfdVUzso8d8WXr3II_CM7jqvbYHgLqy',
+    "client_secret" : 'EG8_fhdki556EQ3b4S4JqyyDiY2nllfvokIoX-e1MwLpBAGW2uWGp1-xdd-5LSCvGEh6O9FLMvi4yXc8'}
+  };
+}
+
 var rest            = require('restler');
 
 var utils = {};
