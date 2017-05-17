@@ -26,6 +26,12 @@ app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $loc
     })
   }
 
+  var paramValue = $location.search().src;
+  if(paramValue == 'sent') {
+    $location.url($location.path());
+    alert('Email sent! We will reply shortly. Thank you.');
+  }
+
   if($location.path() == '/') {
     //$localStorage.bh = {};
     func.getCourses(function(respCourses) {
