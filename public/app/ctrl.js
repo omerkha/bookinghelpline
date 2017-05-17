@@ -69,41 +69,7 @@ app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $loc
     $('body').show();
   }, 600)
 
-  $timeout(function () {
 
-    $("#top-featured").owlCarousel({
-        items:4,
-        nav:true,
-        autoplay:true,
-        dots:true,
-        autoplayHoverPause:true,
-        loop:true,
-        nav:false,
-        navText: [
-    "<i class='fa fa-angle-left '></i>",
-    "<i class='fa fa-angle-right'></i>"
-    ],
-        responsive: {
-            0: {
-                items: 1,
-                slideBy:1
-            },
-            480: {
-                items: 2,
-                slideBy:1
-            },
-            991: {
-                items: 3,
-                slideBy:1
-            },
-            1000: {
-                items: 4,
-                slideBy:1
-            },
-        }
-
-    });
-  }, 3000);
 
 
 })
@@ -263,6 +229,46 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
 
 
   }, 500);
+
+
+
+
+
+  $timeout(function () {
+
+    $("#top-featured").owlCarousel({
+        items:4,
+        nav:true,
+        autoplay:true,
+        dots:true,
+        autoplayHoverPause:true,
+        loop:true,
+        nav:false,
+        navText: [
+    "<i class='fa fa-angle-left '></i>",
+    "<i class='fa fa-angle-right'></i>"
+    ],
+        responsive: {
+            0: {
+                items: 1,
+                slideBy:1
+            },
+            480: {
+                items: 2,
+                slideBy:1
+            },
+            991: {
+                items: 3,
+                slideBy:1
+            },
+            1000: {
+                items: 4,
+                slideBy:1
+            },
+        }
+
+    });
+  }, 3200);
 
 
 
