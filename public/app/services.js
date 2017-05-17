@@ -64,6 +64,23 @@ app.service('func', function($http, cart, courses, $localStorage) {
     })
   }
 
+  func.addProducts = function(cb) {
+    var postData = {
+      0: $localStorage.bh.cart,
+      1: $localStorage.bh.customerData
+    }
+    $http({
+      method : 'POST',
+      url : 'https://hshelpline.co.uk/custom/api/add-products.php',
+      data: $.param(postData),
+      headers: {
+        'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+      }
+    }).then(function(resp) {
+      cb(resp);
+    })
+  }
+
   func.getPaypalToken = function(cb) {
     $http.post('/api/get-paypal-token').then(function(resp) {
       cb(resp);

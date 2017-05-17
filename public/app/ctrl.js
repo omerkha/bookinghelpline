@@ -385,15 +385,18 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
   $scope.goPayment = function() {
     var dateSplit = $scope.customerData.dob.split('-');
     $scope.customerData.dob = dateSplit[2]+'-'+dateSplit[1]+'-'+dateSplit[0];
+    /*func.addProducts(function(prodResp) {
+      console.log(prodResp);
+    })*/
     func.addLead($scope.customerData, function(resp) {
       $scope.customerData.crmID = resp.data.replace(/\s/g,'');
       $scope.getPaypalToken(function(token) {
         $scope.customerData.paypalToken = token;
         $localStorage.bh.customerData = $scope.customerData;
         $location.path('/payment');
-        func.addProducts(function(prodResp) {
+        /*func.addProducts(function(prodResp) {
 
-        })
+        })*/
       })
     })
   }
