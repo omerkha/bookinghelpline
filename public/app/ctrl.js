@@ -91,6 +91,10 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
   $scope.industryList = industryList;
   $scope.appTypeList = appTypeList;
 
+  $scope.rangeMin = 'May 19, 2030 6:00 AM';
+  $scope.rangeMax = 'May 19, 2030 19:30 PM';
+  //console.log($scope.range);
+
   $scope.cardDetails.industry = $scope.industryList[0];
   $scope.cardDetails.appType = $scope.appTypeList[0];
 
