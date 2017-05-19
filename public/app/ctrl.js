@@ -91,8 +91,8 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
   $scope.industryList = industryList;
   $scope.appTypeList = appTypeList;
 
-  $scope.rangeMin = 'May 19, 2030 6:00 AM';
-  $scope.rangeMax = 'May 19, 2030 19:30 PM';
+  //$scope.rangeMin = 'May 19, 2030 6:00 AM';
+  //$scope.rangeMax = 'May 19, 2030 19:30 PM';
   //console.log($scope.range);
 
   $scope.cardDetails.industry = $scope.industryList[0];
@@ -138,13 +138,13 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
 
   $scope.processTestDate = function() {
     //console.log(moment($scope.testDetails.testDate._d).format('DD-MM-YYYY'));
-    $scope.testDetails.testDate = moment($scope.testDetails.testDate._d).format('DD-MM-YYYY');
+    //$scope.testDetails.testDate = moment($scope.testDetails.testDate._d).format('DD-MM-YYYY');
     //$localStorage.bh.testDetails.testDate = moment($scope.testDetails.testDate._d).format('DD-MM-YYYY');
     $localStorage.bh.testDetails = $scope.testDetails;
 
   }
   $scope.processTestTime = function() {
-    $scope.testDetails.testTime = moment($scope.testDetails.testTime).format('HH:00');
+    //$scope.testDetails.testTime = moment($scope.testDetails.testTime).format('HH:00');
     $localStorage.bh.testDetails = $scope.testDetails;
   }
 
