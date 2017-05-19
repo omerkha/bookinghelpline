@@ -662,6 +662,7 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
 
                 })
               }, function(error) {
+                $('#spinner').addClass('hide');
                 $location.path('/checkout-error');
               });
 
