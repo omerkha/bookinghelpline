@@ -33,8 +33,9 @@
                                  <div class="row">
                                    <div class="col-xs-12 col-sm-12 col-md-12">
                                      <div class="form-group">
-                                         <select ng-model="cardDetails.type" ng-options="c.name for c in cardTypes" class="form-control">
-																				 </select>
+																				 <select ng-model="cardDetails.type" ng-options="c.name for c in cardTypesList" class="form-control">
+															           <option value="">Choose a card type</option>
+																			 </select>
 																				 <span class="select-arrow">▼</span>
                                      </div>
                                    </div>

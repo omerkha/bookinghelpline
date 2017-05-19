@@ -460,6 +460,9 @@ app.controller('CourseCtrl', function($scope, $timeout, $http, cats, $location, 
 })
 
 app.controller('CartCtrl', function($scope, $localStorage, $location, func, $timeout, $http, industryList, appTypeList) {
+
+
+
   $scope.location = $location;
 
   $scope.customerData = {};
@@ -495,6 +498,14 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
     $scope.cardDetails.industry = $scope.industryList[$localStorage.bh.cardDetails.industry.id];
     $scope.cardDetails.appType = $scope.appTypeList[$localStorage.bh.cardDetails.appType.id];
   }
+
+  $scope.cardTypesList = [
+    {name: 'Mastercard', value: 'mastercard', sel: ''},
+    {name: 'Visa',  value: 'visa', sel: ''}
+  ];
+  $scope.cardDetails.type = $scope.cardTypesList[0];
+
+  console.log($scope.cardDetails.type);
 
 
 
@@ -572,6 +583,21 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
   }
 
   $scope.goPayment = function() {
+
+    var cd = $scope.customerData;
+    if(cd.first_name == undefined || cd.first_name.length < 3) {alert('Please enter your first name.'); return false;}
+    if(cd.last_name == undefined || cd.last_name.length < 3) {alert('Please enter your last name.'); return false;}
+    if(cd.email == undefined || cd.email.length < 4) {alert('Please enter a valid email.'); return false;}
+    if(cd.phone == undefined || cd.phone.length < 6) {alert('Please enter a valid phone number.'); return false;}
+    if(cd.niNumber == undefined || cd.niNumber.length < 6) {alert('Please enter your national insurance number.'); return false;}
+    if(cd.dob == undefined || cd.dob.length < 7) {alert('Please enter your date of birth.'); return false;}
+
+    if(cd.billingAddress == undefined || cd.billingAddress.length < 5) {alert('Please enter your billing address.'); return false;}
+    if(cd.city == undefined || cd.city.length < 4) {alert('Please enter your billing city.'); return false;}
+    if(cd.county == undefined || cd.county.length < 4) {alert('Please enter your billing county.'); return false;}
+    if(cd.postcode == undefined || cd.postcode.length < 5) {alert('Please enter your billing postcode.'); return false;}
+
+
     var dateSplit = $scope.customerData.dob.split('-');
     $scope.customerData.dob = dateSplit[2]+'-'+dateSplit[1]+'-'+dateSplit[0];
     var cartString = ''
@@ -601,12 +627,7 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
     })
   }
 
-  $scope.cardTypes = [
-    {name: 'Please Select Card Type', value: 0},
-    {name: 'Mastercard', value: 'mastercard'},
-    {name: 'Visa',  value: 'visa'}
-  ];
-  $scope.cardDetails.type = $scope.cardTypes[0];
+
 
   $scope.pay = function() {
 
