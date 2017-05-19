@@ -81,8 +81,8 @@
 														<h5 class="media-heading cart-course-name">{{item.productname}}</h5>
 														<p class="test-cart-info" ng-if="testDetails && item.product_no == 'PRO32' ">
 															<strong>Test Type:</strong> {{localStorage.bh.testDetails.type.name}}<br>
-															<strong>Preferred Date:</strong> <span ng-bind="localStorage.bh.testDetails.testDate | date:'MM-dd-yyyy'"></span><br>
-															<strong>Preferred Time:</strong> <span ng-bind="localStorage.bh.testDetails.testTime | date:'HH:00 a'"></span> <br>
+															<strong>Preferred Date:</strong> <span ng-bind="localStorage.bh.td"></span><br>
+															<strong>Preferred Time:</strong> <span ng-bind="localStorage.bh.tt"></span> <br>
 															<strong>Language:</strong> {{localStorage.bh.testDetails.voiceover.name}}
 														</p>
 														<p class="test-cart-info" ng-if="localStorage.bh.cardDetails.industry.name && item.product_no == 'PRO31' ">

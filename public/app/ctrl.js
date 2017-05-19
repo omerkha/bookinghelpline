@@ -139,12 +139,14 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
   $scope.processTestDate = function() {
     //console.log(moment($scope.testDetails.testDate._d).format('DD-MM-YYYY'));
     //$scope.testDetails.testDate = moment($scope.testDetails.testDate._d).format('DD-MM-YYYY');
-    //$localStorage.bh.testDetails.testDate = moment($scope.testDetails.testDate._d).format('DD-MM-YYYY');
+    $localStorage.bh.testDetails.testDate = moment($scope.testDetails.testDate._d).format('DD-MM-YYYY');
+    $localStorage.bh.td = moment($scope.testDetails.testDate._d).format('DD-MM-YYYY');
     $localStorage.bh.testDetails = $scope.testDetails;
 
   }
   $scope.processTestTime = function() {
     //$scope.testDetails.testTime = moment($scope.testDetails.testTime).format('HH:00');
+    $localStorage.bh.tt = moment($scope.testDetails.testTime._d).format('HH:00');
     $localStorage.bh.testDetails = $scope.testDetails;
   }
 
@@ -156,7 +158,9 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
         if($scope.cart[key].product_no == 'PRO31') {
           $timeout(function() {
             func.addCart(prodID, function() {
+              //$location.path('/cart');
               $location.path('/cart');
+              $scope.$apply();
             })
           }, 500)
         } else {
@@ -164,6 +168,7 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
             func.addCart(prodID, function() {})
             func.addCart('PRO31', function() {
               $location.path('/cart');
+              $scope.$apply();
             })
           }, 500)
         }
@@ -456,9 +461,14 @@ app.controller('CourseCtrl', function($scope, $timeout, $http, cats, $location, 
 
 app.controller('CartCtrl', function($scope, $localStorage, $location, func, $timeout, $http, industryList, appTypeList) {
   $scope.location = $location;
-  $scope.localStorage = $localStorage;
+
   $scope.customerData = {};
   $scope.cardDetails = {};
+
+  $scope.localStorage = $localStorage;
+
+  console.log($scope.localStorage);
+
 
   $scope.industryList = industryList;
   $scope.appTypeList = appTypeList;
@@ -475,12 +485,18 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
 
   if($localStorage.bh !== undefined && $localStorage.bh.testDetails) {
     $scope.testDetails = $localStorage.bh.testDetails;
+    //$scope.localStorage.bh.testDetails.testDate = $scope.testDetails.testDate._d;
+    //$scope.localStorage.bh.testDetails.testTime = $scope.testDetails.testTime._d;
+    //$scope.testDetails.testDate = $scope.testDetails.testDate._d;
+    //$scope.testDetails.testTime = $scope.testDetails.testTime._d;
   }
 
   if($localStorage.bh !== undefined && $localStorage.bh.cardDetails) {
     $scope.cardDetails.industry = $scope.industryList[$localStorage.bh.cardDetails.industry.id];
     $scope.cardDetails.appType = $scope.appTypeList[$localStorage.bh.cardDetails.appType.id];
   }
+
+
 
   $scope.checkout = function() {
     var flag = 0;
