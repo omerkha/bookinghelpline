@@ -19,6 +19,28 @@ app.factory('cats', function() {
   ]
 })
 
+app.factory('industryList', function() {
+  return [
+    {id: 0, name: 'Select Industry Body'},
+    {id: 1, name: 'CSCS - General Construction'},
+    {id: 2, name: 'CCDO - Demolition'},
+    {id: 3, name: 'CISRS - Scaffolding'},
+    {id: 4, name: 'JIB-PMES - Plumbing'},
+    {id: 5, name: 'SKILLcard - Engineering'}
+  ]
+})
+
+app.factory('appTypeList', function() {
+  return [
+    {id: 0, name: 'Select Application Type'},
+    {id: 1, name: 'New'},
+    {id: 2, name: 'Replace'},
+    {id: 3, name: 'Renew'}
+  ]
+})
+
+
+
 app.factory('cart', function() {
   return {};
 })

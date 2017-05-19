@@ -10,6 +10,7 @@ app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $loc
       }
     }
     console.log($scope.cscsTest);
+    console.log($scope.cscsCourse);
   }
 
   if($localStorage.bh !== undefined && $localStorage.bh.courses) {
@@ -42,11 +43,17 @@ app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $loc
     })
   }
 
-  $scope.addCartSubmit = function(prodID) {
-    func.addCart(prodID, function() {
-      $location.path('/cart');
-    })
+  $scope.addCartSubmit = function(prodID, redirect) {
+    $timeout(function() {
+      func.addCart(prodID, function() {});
+      if(redirect == undefined) {
+        $location.path('/cart');
+      }
+    }, 400);
   }
+
+
+
 
   if($location.path() == '/') {
     $('.nav-top-menu').removeClass('active');
@@ -74,11 +81,99 @@ app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $loc
 
 })
 
-app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, details) {
+app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, details, $localStorage, func, $location, industryList, appTypeList) {
 
   $scope.cats = cats;
   $scope.details = details;
+  $scope.testDetails = {};
+  $scope.cardDetails = {};
 
+  $scope.industryList = industryList;
+  $scope.appTypeList = appTypeList;
+
+  $scope.cardDetails.industry = $scope.industryList[0];
+  $scope.cardDetails.appType = $scope.appTypeList[0];
+
+  if($localStorage.bh !== undefined && $localStorage.bh.cardDetails) {
+    $scope.cardDetails.industry = $scope.industryList[$localStorage.bh.cardDetails.industry.id];
+    $scope.cardDetails.appType = $scope.appTypeList[$localStorage.bh.cardDetails.appType.id];
+  }
+
+  if($localStorage.bh !== undefined && $localStorage.bh.cart) {
+    $scope.cart = $localStorage.bh.cart;
+  }
+
+  var options = {hashTracking: false};
+  $('[data-remodal-id=card-cart-modal]').remodal(options);
+
+  $scope.testTypes = [
+    {name: 'Please Select Test Type'},
+		{name: "Operative"},
+		{name: "Supervisory"},
+		{name: "Managerial & Professional"},
+		{name: "Plumbing and Gas"},
+		{name: "Highways"},
+		{name: "Pipefitting/Welding (HVACR)"},
+		{name: "Ductwork (HVACR)"},
+		{name: "National Demolition Training Group"},
+		{name: "Lift and Escalator"},
+		{name: "Working at Heights"},
+		{name: "Tunnelling"},
+		{name: "Heating and Plumbing Services"},
+		{name: "Refrigeration and Air Conditioning"},
+		{name: "Services and Facilities Maintenance"}
+  ];
+  $scope.testDetails.type = $scope.testTypes[0];
+
+  $scope.voiceoverList = [
+    {name: 'Please Select Language'},
+		{name: "English"},
+		{name: "Welsh"}
+  ];
+  $scope.testDetails.voiceover = $scope.voiceoverList[0];
+
+  $scope.processTestDate = function() {
+    //console.log(moment($scope.testDetails.testDate._d).format('DD-MM-YYYY'));
+    //$scope.testDetails.testDate = moment($scope.testDetails.testDate._d).format('DD-MM-YYYY');
+    //$localStorage.bh.testDetails.testDate = moment($scope.testDetails.testDate._d).format('DD-MM-YYYY');
+    $localStorage.bh.testDetails = $scope.testDetails;
+
+  }
+  $scope.processTestTime = function() {
+    //$scope.testDetails.testTime = moment($scope.testDetails.testTime).format('HH:00');
+    $localStorage.bh.testDetails = $scope.testDetails;
+  }
+
+
+  $scope.addCartSubmitWait = function(prodID) {
+    $localStorage.bh.testDetails = $scope.testDetails;
+    if($scope.cart !== undefined && $scope.cart.length > 0) {
+      for(key in $scope.cart) {
+        if($scope.cart[key].product_no == 'PRO31') {
+          $timeout(function() {
+            func.addCart(prodID, function() {
+              $location.path('/cart');
+            })
+          }, 500)
+        } else {
+          $timeout(function() {
+            func.addCart(prodID, function() {})
+            func.addCart('PRO31', function() {
+              $location.path('/cart');
+            })
+          }, 500)
+        }
+      }
+    } else {
+      $timeout(function() {
+        func.addCart(prodID, function() {})
+        func.addCart('PRO31', function() {
+          $location.path('/cart');
+        })
+      }, 500)
+    }
+
+  }
 
   $scope.presentShow = function(catName) {
     console.log(catName);
@@ -236,6 +331,12 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
 
   $timeout(function () {
 
+    var options = {
+      hashTracking: false
+    };
+
+    $('[data-remodal-id=book-online-modal]').remodal(options);
+
     $("#top-featured").owlCarousel({
         items:4,
         nav:true,
@@ -349,10 +450,18 @@ app.controller('CourseCtrl', function($scope, $timeout, $http, cats, $location, 
 
 })
 
-app.controller('CartCtrl', function($scope, $localStorage, $location, func, $timeout, $http) {
+app.controller('CartCtrl', function($scope, $localStorage, $location, func, $timeout, $http, industryList, appTypeList) {
   $scope.location = $location;
+  $scope.localStorage = $localStorage;
   $scope.customerData = {};
   $scope.cardDetails = {};
+
+  $scope.industryList = industryList;
+  $scope.appTypeList = appTypeList;
+
+  $scope.cardDetails.industry = $scope.industryList[0];
+  $scope.cardDetails.appType = $scope.appTypeList[0];
+
   if($localStorage.bh !== undefined && $localStorage.bh.cart) {
     $scope.cart = $localStorage.bh.cart;
     if($localStorage.bh.customerData !== undefined) {
@@ -360,7 +469,52 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
     }
   }
 
+  if($localStorage.bh !== undefined && $localStorage.bh.testDetails) {
+    $scope.testDetails = $localStorage.bh.testDetails;
+  }
 
+  if($localStorage.bh !== undefined && $localStorage.bh.cardDetails) {
+    $scope.cardDetails.industry = $scope.industryList[$localStorage.bh.cardDetails.industry.id];
+    $scope.cardDetails.appType = $scope.appTypeList[$localStorage.bh.cardDetails.appType.id];
+  }
+
+  $scope.checkout = function() {
+    var flag = 0;
+    for(key in $scope.cart) {
+      if($localStorage.bh.cardDetails !== undefined && $scope.cart[key].product_no == 'PRO31') {
+        if(
+          $localStorage.bh.cardDetails.industry.name.length < 3 ||
+          $localStorage.bh.cardDetails.industry.name == 'Select Industry Body' ||
+          $localStorage.bh.cardDetails.appType.name.length < 3 ||
+          $localStorage.bh.cardDetails.appType.name == 'Select Application Type'
+        ) {
+            flag++;
+        }
+      }
+    }
+    if($localStorage.bh.cardDetails == undefined && $scope.cart[key].product_no == 'PRO31') {
+      flag++;
+    }
+    if(flag < 1) {
+      $location.path('/checkout');
+    } else {
+      var inst = $('[data-remodal-id=card-cart-modal]').remodal();
+      inst.open();
+    }
+  }
+
+
+
+  $scope.addCardDetails = function() {
+    $localStorage.bh.cardDetails = $scope.cardDetails;
+  }
+
+
+  var options = {
+    hashTracking: false
+  };
+
+  $('[data-remodal-id=card-cart-modal]').remodal(options);
 
   $scope.changeQty = function(key) {
     console.log($scope.cart);
@@ -403,6 +557,18 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
       cartString += $localStorage.bh.cart[key].qty+' x '+$localStorage.bh.cart[key].productname+' ('+$localStorage.bh.cart[key].product_no+'), ';
     }
     $scope.customerData.cart = cartString;
+    if($localStorage.bh.testDetails !== undefined) {
+      $scope.customerData.testType = $localStorage.bh.testDetails.type.name;
+      $scope.customerData.testVoiceover = $localStorage.bh.testDetails.voiceover.name;
+      $scope.customerData.testDate = moment($localStorage.bh.testDetails.testDate).format('YYYY-MM-DD');
+      $scope.customerData.testTime = moment($localStorage.bh.testDetails.testTime).format('HH:00');
+    }
+    if($localStorage.bh.cardDetails !== undefined) {
+      $scope.customerData.cardIndustry = $localStorage.bh.cardDetails.industry.name;
+      $scope.customerData.cardAppType = $localStorage.bh.cardDetails.appType.name;
+    }
+
+
     func.addLead($scope.customerData, function(resp) {
       $scope.customerData.crmID = resp.data.replace(/\s/g,'');
       $scope.getPaypalToken(function(token) {

@@ -49,7 +49,7 @@
 									<hr>
 								</div>
 
-								<button ng-click="location.path('/checkout')" type="button" class="btn btn-primary btn-block cart-btn">Checkout</button>
+								<button ng-click="checkout()" type="button" class="btn btn-primary btn-block cart-btn">Checkout</button>
 
 							</div>
 
@@ -79,13 +79,26 @@
 													<a class="thumbnail pull-left" href="#"> <img class="media-object" src="{{item.cf_825}}" style="width: 72px; height: 72px;"> </a>
 													<div class="media-body">
 														<h5 class="media-heading cart-course-name">{{item.productname}}</h5>
+														<p class="test-cart-info" ng-if="testDetails && item.product_no == 'PRO32' ">
+															<strong>Test Type:</strong> {{localStorage.bh.testDetails.type.name}}<br>
+															<strong>Preferred Date:</strong> <span ng-bind="localStorage.bh.testDetails.testDate | date:'MM-dd-yyyy'"></span><br>
+															<strong>Preferred Time:</strong> <span ng-bind="localStorage.bh.testDetails.testTime | date:'HH:00 a'"></span> <br>
+															<strong>Language:</strong> {{localStorage.bh.testDetails.voiceover.name}}
+														</p>
+														<p class="test-cart-info" ng-if="localStorage.bh.cardDetails.industry.name && item.product_no == 'PRO31' ">
+															<strong>Industry:</strong> {{localStorage.bh.cardDetails.industry.name}}<br>
+															<strong>Application Type:</strong> {{localStorage.bh.cardDetails.appType.name}}
+														</p>
+														<div ng-if="item.product_no == 'PRO31' " data-remodal-target="card-cart-modal" class="item-price course-price pointer card-update-btn">
+															<span>Update CSCS Card Info</span>
+														</div>
 														<!-- <h5 class="media-heading">{{item.product_no}}</h5> -->
 													</div>
 												</div>
 											</td>
-											<td class="text-center item-marg">{{item.unit_price | limitTo:5}}</td>
-											<td class="text-center item-marg"><input ng-change="changeQty($index)" class="form-control input-sm col-md-1 qty-input" type="text" placeholder="Qty" ng-model="cart[$index].qty" value="1"></td>
-											<td class="text-center item-marg">{{item.unit_price * item.qty | limitTo:5}}</td>
+											<td class="text-center item-marg">£{{item.unit_price | limitTo:5}}</td>
+											<td class="text-center item-marg"><input ng-change="changeQty($index)" ng-disabled="item.product_no == 'PRO31' || item.product_no == 'PRO32'" class="form-control input-sm col-md-1 qty-input" type="text"  placeholder="Qty" ng-model="cart[$index].qty" value="1"></td>
+											<td class="text-center item-marg">£{{item.unit_price * item.qty | limitTo:5}}</td>
 											<td class="text-right item-marg"><button ng-click="removeItem($index)" type="button" class="btn btn-danger">Remove</button></td>
 										</tr>
 									</tbody>
@@ -120,3 +133,31 @@
 
 	</div> <!-- ad-post -->
 </div>	<!-- page -->
+
+
+
+
+<div class="remodal" data-remodal-id="card-cart-modal">
+  <button data-remodal-action="close" class="remodal-close"></button>
+  <h1>Update CSCS Card Details</h1>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6">
+      <div class="form-group">
+          <select ng-model="cardDetails.industry" ng-options="c.name for c in industryList" class="form-control">
+          </select>
+          <span class="select-arrow">▼</span>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6">
+      <div class="form-group">
+        <select ng-model="cardDetails.appType" ng-options="c.name for c in appTypeList" class="form-control">
+        </select>
+        <span class="select-arrow">▼</span>
+      </div>
+    </div>
+  </div>
+  <br>
+  <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+  <button data-remodal-action="confirm" ng-click="addCardDetails()" class="remodal-confirm">OK</button>
+</div>

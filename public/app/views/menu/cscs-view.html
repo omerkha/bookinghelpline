@@ -143,7 +143,7 @@ If you have achieved a NVQ or a SVQ within the last two years and are applying f
                   <div class="col-md-8">
                     <div class="seller-info">
                       <p>Receive your card. You can apply for your card online or over the phone by calling our advisor’s on <a href="tel:{{details.number}}">{{details.number}}</a></p><br>
-                      <p><div ng-click="addCartSubmit(cscsCourse.product_no)" class="item-price course-price pointer"><span>Add to Cart</span></div></p>
+                      <p><div data-remodal-target="card-cart-modal" class="item-price course-price pointer"><span>Apply Online</span></div></p>
                     </div>
                   </div>
                 </div>
@@ -293,5 +293,31 @@ If you have achieved a NVQ or a SVQ within the last two years and are applying f
     </div>
   </div> <!-- all-categories -->
 </div>	<!-- page -->
+
+<div class="remodal" data-remodal-id="card-cart-modal">
+  <button data-remodal-action="close" class="remodal-close"></button>
+  <h1>Update CSCS Card Details</h1>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6">
+      <div class="form-group">
+          <select ng-model="cardDetails.industry" ng-options="c.name for c in industryList" class="form-control">
+          </select>
+          <span class="select-arrow">▼</span>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6">
+      <div class="form-group">
+        <select ng-model="cardDetails.appType" ng-options="c.name for c in appTypeList" class="form-control">
+        </select>
+        <span class="select-arrow">▼</span>
+      </div>
+    </div>
+  </div>
+  <br>
+  <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+  <button data-remodal-action="confirm" ng-click="addCartSubmit(cscsCourse.product_no)" class="remodal-confirm">OK</button>
+</div>
+
 
 <div foot></div>
