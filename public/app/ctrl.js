@@ -489,6 +489,8 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
           $localStorage.bh.cardDetails.appType.name == 'Select Application Type'
         ) {
             flag++;
+        } else {
+          $location.path('/checkout');
         }
       }
     }
