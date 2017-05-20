@@ -2,6 +2,12 @@ module.exports = function(app, utils) {
 
 	utils.paypal.configure(utils.config.api);
 
+	app.post('/api/test', function(req, res) {
+				res.json({
+					token: utils.config
+				});
+  })
+
 	app.post('/api/get-paypal-token', function(req, res) {
 		//var url = 'https://api.sandbox.paypal.com/v1/oauth2/token';
 		var url = 'https://api.paypal.com/v1/oauth2/token';

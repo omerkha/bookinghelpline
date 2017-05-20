@@ -186,7 +186,9 @@
 
               <div class="contact-seller widget">
                 <h4>Contact Booking Helpline</h4>
-                <form id="contact-form" class="contact-form" name="contact-form" method="post" action="#">
+                <form id="contact-form" class="contact-form" name="contact-form" action="https://formsubmit.io/send/query@bookinghelpline.co.uk" method="POST">
+                  <input name="_redirect" type="hidden" id="name" value="http://www.bookinghelpline.co.uk?src=sent">
+
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
@@ -262,7 +264,7 @@
   </div>
   <br>
   <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-  <button data-remodal-action="confirm" ng-click="addCartSubmitWait(cscsTest.product_no)" class="remodal-confirm">OK</button>
+  <button ng-click="addCartSubmitWait(cscsTest.product_no)" class="remodal-confirm">OK</button>
 </div>
 
 

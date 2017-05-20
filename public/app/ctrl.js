@@ -33,6 +33,10 @@ app.controller('NaviCtrl', function($scope, $timeout, $http, cats, courses, $loc
     $location.url($location.path());
     alert('Email sent! We will reply shortly. Thank you.');
   }
+  if(paramValue == 'subbed') {
+    $location.url($location.path());
+    alert('You have subscribed.');
+  }
 
   if($location.path() == '/') {
     //$localStorage.bh = {};
@@ -139,7 +143,7 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
   $scope.processTestDate = function() {
     //console.log(moment($scope.testDetails.testDate._d).format('DD-MM-YYYY'));
     //$scope.testDetails.testDate = moment($scope.testDetails.testDate._d).format('DD-MM-YYYY');
-    $localStorage.bh.testDetails.testDate = moment($scope.testDetails.testDate._d).format('DD-MM-YYYY');
+    //$localStorage.bh.testDetails.testDate = moment($scope.testDetails.testDate._d).format('DD-MM-YYYY');
     $localStorage.bh.td = moment($scope.testDetails.testDate._d).format('DD-MM-YYYY');
     $localStorage.bh.testDetails = $scope.testDetails;
 
@@ -153,6 +157,27 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
 
   $scope.addCartSubmitWait = function(prodID) {
     $localStorage.bh.testDetails = $scope.testDetails;
+    if($scope.testDetails.testDate == undefined || $scope.testDetails.testDate == '') {
+      alert('Please enter a preferred test date.');
+      return false;
+    }
+    if($scope.testDetails.testTime == undefined || $scope.testDetails.testTime == '') {
+      alert('Please enter a preferred test time.');
+      return false;
+    }
+    if($scope.testDetails.type.name == undefined || $scope.testDetails.type.name == 'Please Select Test Type') {
+      alert('Please select a test type.');
+      return false;
+    }
+    if($scope.testDetails.voiceover.name == undefined || $scope.testDetails.voiceover.name == 'Please Select Language') {
+      alert('Please select a preferred language.');
+      return false;
+    }
+
+    var inst = $('[data-remodal-id=book-online-modal]').remodal();
+    inst.close();
+
+
     if($scope.cart !== undefined && $scope.cart.length > 0) {
       for(key in $scope.cart) {
         if($scope.cart[key].product_no == 'PRO31') {
@@ -539,6 +564,17 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
 
 
   $scope.addCardDetails = function() {
+    if($scope.cardDetails.industry.name == undefined || $scope.cardDetails.industry.name == 'Select Industry Body') {
+      alert('Please select the card industry body.');
+      return false;
+    }
+    if($scope.cardDetails.appType.name == undefined || $scope.cardDetails.appType.name == 'Select Application Type') {
+      alert('Please select the card application type.');
+      return false;
+    }
+    var inst =  $('[data-remodal-id=card-cart-modal]').remodal();
+    inst.close();
+
     $localStorage.bh.cardDetails = $scope.cardDetails;
   }
 
@@ -658,7 +694,7 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
       data: $scope.paypalVaultObj,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+$scope.customerData.paypalToken
+        'Authorization': 'Bearer '+$localStorage.bh.customerData.paypalToken
       }}).then(function(result) {
            $scope.customerData.vaultID = result.data.id;
            $scope.paypalChargeObj = {
@@ -714,6 +750,9 @@ app.controller('CartCtrl', function($scope, $localStorage, $location, func, $tim
            alert(error.data.details[0].field+' Field: '+error.data.details[0].issue);
            $('#spinner').addClass('hide');
            return false;
+         } else {
+           $('#spinner').addClass('hide');
+           alert('There was a problem please try again later.');
          }
        });
 

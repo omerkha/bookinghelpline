@@ -24,6 +24,8 @@ if(process.env.ppClientID && process.env.ppSecret) {
   };
 }
 
+console.log(config);
+
 var rest            = require('restler');
 
 var utils = {};

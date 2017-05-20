@@ -11,9 +11,9 @@
               <div class="slider-content">
                 <h1 data-animation="animated lightSpeedIn">Welcome</h1>
                 <h2 data-animation="animated lightSpeedIn">To Booking Helpline</h2>
-                <p data-animation="animated lightSpeedIn">Find your nearest course and book it with right away with our fast system.</p>
+                <p data-animation="animated lightSpeedIn">Book your health & safety test right away with our fast system.</p>
                 <div class="ad-btn">
-                  <a href="/construction" class="btn btn-primary" data-animation="animated lightSpeedIn">View Courses</a>
+                  <a href="/cscs-test" class="btn btn-primary" data-animation="animated lightSpeedIn">Book Health & Safety Test</a>
                 </div>
               </div>
             </div>
@@ -389,10 +389,14 @@
         <div class="col-sm-8 col-sm-offset-2">
           <div class="newsletter">
             <p>Sign up with your email to get latest updates and offers</p>
-            <div class="input-email">
-                      <input type="email" placeholder="Enter your email address" name="email" id="email">
-                      <input type="submit" class="btn btn-primary" value="Subscribe Now">
-                  </div>
+            <form action="https://formsubmit.io/send/query@bookinghelpline.co.uk" method="POST">
+              <div class="input-email">
+                  <input name="_redirect" type="hidden" id="name" value="http://www.bookinghelpline.co.uk?src=subbed">
+                  <input type="email" placeholder="Enter your email address" name="email" id="email">
+                  <input type="submit" class="btn btn-primary" value="Subscribe Now">
+                  <input name="_formsubmit_id" type="text" style="display:none">
+              </div>
+            </form>
           </div>
         </div>
       </div>
