@@ -403,7 +403,7 @@ app.controller('HomeCtrl', function($scope, $timeout, $http, cats, courses, deta
         }
 
     });
-  }, 3500);
+  }, 4000);
 
 
 
